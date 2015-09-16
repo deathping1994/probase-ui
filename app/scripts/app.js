@@ -8,7 +8,7 @@
  *
  * Main module of the application.
  */
-angular
+var probaseUiApp=angular
   .module('probaseUiApp', [
     'ngAnimate',
     'ngCookies',
@@ -21,9 +21,9 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl',
+        controllerAs: 'login'
       })
       .when('/about', {
         templateUrl: 'views/about.html',
@@ -34,3 +34,11 @@ angular
         redirectTo: '/'
       });
   });
+
+probaseUiApp.factory('GlobalService', function() {
+    return {
+        baseurl : 'http://localhost:5000/',
+        error:"",
+        authkey:""
+    };
+});
