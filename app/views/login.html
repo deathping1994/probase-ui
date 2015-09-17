@@ -6,6 +6,7 @@
             <img src="/static/images/user.png" alt=""/>
           </div>
         <form>
+            <p ng-bind="error"></p>
             <input type="text" class="text" ng-model="user" >
             <input type="password" value="Password" onfocus="this.value('')" ng-model="pass">
             <input type="text" class="text" ng-model="date1"> <br />
@@ -15,7 +16,7 @@
               <input type="submit" ng-click="submit()" value="LOGIN" >
           </div>  
           <p><a href="#">Forgot Password ?</a></p>
-          <p ng-model="error"></p>
+
         </form>
       </div>
       <!--//End-login-form-->

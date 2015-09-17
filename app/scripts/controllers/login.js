@@ -12,6 +12,7 @@ angular.module('probaseUiApp')
      $scope.user='';
      $scope.pass='';
      $scope.response;
+     $scope.error="";
      $scope.usertype={student:true,
      					teacher:false
      				};
@@ -26,7 +27,6 @@ angular.module('probaseUiApp')
      $scope.date1='DD/MM/YYYY';
      $scope.submit = function()
 		  { var checkboxvalue =retcheckbox();
-		  	console.log(checkboxvalue);
 		  	var url=GlobalService.baseurl+"login_action"
 		  	console.log(url);
 		    var data={ 'user': $scope.user,
@@ -36,14 +36,15 @@ angular.module('probaseUiApp')
 		    	};
 		    $http.post(url,data)
 		      .then(function(response)
-		      	{
-		      		if(response.data.error=="")
-		      		{
-		      			GlobalService.error=response.data.error;
-		      		}
+		      	{console.log(response);
+		      		 if(response.data.error!="")
+		      		 {
+		      		 	GlobalService.error=response.data.error;
+		      		 	$scope.error=GlobalService.error;
+		      		 }
 		      		else
 		      			{GlobalService.authkey=response.data.authkey;
-		      			console.log(response.data);}
+		      		 	console.log(response.data);}
 		      	
 		      	}),(function(response){
 		      	$scope.response=response;
