@@ -2,18 +2,18 @@
 
 /**
  * @ngdoc function
- * @name probaseUiApp.controller:MainCtrl
+ * @name probaseUiApp.controller:RegisterCtrl
  * @description
- * # MainCtrl
+ * # RegisterCtrl
  * Controller of the probaseUiApp
  */
 angular.module('probaseUiApp')
-  .controller('AboutCtrl',function (GlobalService,$scope,$http) {
+  .controller('RegisterCtrl',function (GlobalService,$scope,$http) {
 
     $scope.title='';
     $scope.projecttype='';
     $scope.description='';
-	  
+    
 
 $scope.members = 
 [{

@@ -30,6 +30,11 @@ var probaseUiApp=angular
         controller: 'AboutCtrl',
         controllerAs: 'about'
       })
+      .when('/register', {
+        templateUrl: 'views/register.html',
+        controller: 'RegisterCtrl',
+        controllerAs: 'register'
+      })
       .otherwise({
         redirectTo: '/'
       });
@@ -37,7 +42,8 @@ var probaseUiApp=angular
 
 probaseUiApp.factory('GlobalService', function() {
     return {
-        baseurl : 'http://localhost:5000/',
+        // baseurl : 'http://188.166.249.229:9000/',
+         baseurl : 'http://192.168.43.189:5000/',
         error:"",
         authkey:""
     };
