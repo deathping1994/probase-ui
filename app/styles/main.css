@@ -5,6 +5,15 @@
   padding: 0.2em 0;
 }
 
+.textbox{
+  
+  width: 500px;}
+
+.textbox1{
+  
+  width: 500px;
+  height:250px;
+}
 body {
   padding: 0;
 }

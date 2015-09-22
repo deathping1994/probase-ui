@@ -7,15 +7,15 @@
           </div>
         <form>
             <p ng-bind="error"></p>
-            <input type="text" class="text" ng-model="user" >
-            <input type="password" value="Password" onfocus="this.value('')" ng-model="pass">
-            <input type="text" class="text" ng-model="date1"> <br />
+            <input type="text" class="text"onfocus="if(this.value == 'Enrollment no.') { this.value = ''; }" ng-model="user" >
+            <input type="password" value="Password" onfocus="if(this.value == 'password') { this.value = ''; }" ng-model="pass">
+            <input type="text" value="DD/MM/YY" onfocus="if(this.value == 'DD/MM/YY') { this.value = ''; }" class="text" ng-model="date1"> <br />
             <input type="radio" name='utype' ng-model="usertype.student">Student
             <input type="radio" name='utype' ng-model="usertype.teacher">Teacher
             <div class="submit">
               <input type="submit" ng-click="submit()" value="LOGIN" >
           </div>
-          <p><a href="#">Forgot Password ?</a></p>
+          <p><a href="https://webkiosk.jiit.ac.in/CommonFiles/ForgetPasswordLogin.jsp">Forgot Password ?</a></p>
 
         </form>
       </div>

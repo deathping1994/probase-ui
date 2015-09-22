@@ -16,7 +16,8 @@ var probaseUiApp=angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'angular-loading-bar'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -35,6 +36,11 @@ var probaseUiApp=angular
         controller: 'RegisterCtrl',
         controllerAs: 'register'
       })
+      .when('/feedback', {
+        templateUrl: 'views/feedback.html',
+        controller: 'FeedbackCtrl',
+        controllerAs: 'feedback'
+      })
       .otherwise({
         redirectTo: '/'
       });
@@ -42,8 +48,8 @@ var probaseUiApp=angular
 
 probaseUiApp.factory('GlobalService', function() {
     return {
-        // baseurl : 'http://188.166.249.229:9000/',
-         baseurl : 'http://192.168.43.189:5000/',
+        baseurl : 'http://188.166.249.229:5000/',
+         //baseurl : 'http://192.168.43.189:5000/',
         error:"",
         authkey:""
     };

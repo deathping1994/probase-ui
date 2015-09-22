@@ -9,25 +9,26 @@
  */
 angular.module('probaseUiApp')
   .controller('LoginCtrl',function (GlobalService,$scope,$http) {
-     $scope.user='';
-     $scope.pass='';
+     $scope.user='Enrollment no.';
+     $scope.pass='password';
      $scope.response;
      $scope.error="";
      $scope.usertype={student:true,
      					teacher:false
      				};
      function retcheckbox()
-     	{if($scope.usertype.student)
+     	{
+     	if($scope.usertype.student)
      		return 'S';
      	else if($scope.usertype.teacher)
      		return 'E';
      	else
      		return 'S';
      	}
-     $scope.date1='DD/MM/YYYY';
+     $scope.date1='DD/MM/YY';
      $scope.submit = function()
 		  { var checkboxvalue =retcheckbox();
-		  	var url=GlobalService.baseurl+"login_action"
+		  	var url=GlobalService.baseurl+"login_action";
 		  	console.log(url);
 		    var data={ 'user': $scope.user,
 		    		'pass': $scope.pass,
@@ -37,7 +38,7 @@ angular.module('probaseUiApp')
 		    $http.post(url,data)
 		      .then(function(response)
 		      	{console.log(response);
-		      		 if(response.data.error!="")
+		      		 if(response.data.error!=="")
 		      		 {
 		      		 	GlobalService.error=response.data.error;
 		      		 	$scope.error=GlobalService.error;
