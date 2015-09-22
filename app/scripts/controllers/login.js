@@ -12,7 +12,7 @@ angular.module('probaseUiApp')
      $scope.user='Enrollment no.';
      $scope.pass='password';
      $scope.response;
-     $scope.error="";
+     $scope.error=GlobalService.error;
      $scope.usertype={student:true,
      					teacher:false
      				};
@@ -46,11 +46,11 @@ angular.module('probaseUiApp')
 		      		else
 		      			{GlobalService.authkey=response.data.authkey;
 		      		 	console.log(response.data);}
-		      	
+
 		      	}),(function(response){
 		      	$scope.response=response;
 		      	console.log($scope.response.error);
-		      	
+
 		      });
 		  }
 

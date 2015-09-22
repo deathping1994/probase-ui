@@ -13,9 +13,9 @@ angular.module('probaseUiApp')
     $scope.title='';
     $scope.projecttype='';
     $scope.description='';
-    
+
 $scope.memberids=[];
-$scope.members = 
+$scope.members =
 [{
   name:'', eno:'',id:'',branch:''
 }];
@@ -27,18 +27,18 @@ $scope.addInput = function(){
 $scope.removeInput = function(index){
     $scope.members.splice(index,1);
 };
-  
 
-  
+
+
 $scope.submit = function()
-      { 
+      {
         for (var x ; x < $scope.members.length;x++)
         {
           $scope.memberids.push($scope.members[x].eno);
         }
 
         var url=GlobalService.baseurl+"v1/project/create";
-        
+
         var data={ 'title': $scope.title,
             'membersid':$scope.memberids,
             'projecttype': $scope.projecttype,
@@ -59,11 +59,11 @@ $scope.submit = function()
               else
                 {GlobalService.authkey=response.data.authkey;
                 console.log(response.data);}
-            
+
             }),(function(response){
             $scope.response=response;
             console.log($scope.response.error);
-            
+
           });
       };
 

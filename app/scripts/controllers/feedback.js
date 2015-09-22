@@ -9,10 +9,10 @@ angular.module('probaseUiApp')
 
 
   	$scope.submit = function()
-      { 
-        
-       var url=GlobalService.baseurl+"/feedback";
-        
+      {
+
+       var url=GlobalService.baseurl+"feedback";
+
         var data={ 'from': $scope.email,
                    'msg' : $scope.text,
                    'authkey': GlobalService.authkey
@@ -30,11 +30,11 @@ angular.module('probaseUiApp')
               else
                 {GlobalService.authkey=response.data.authkey;
                 console.log(response.data);}
-            
+
             }),(function(response){
             $scope.response=response;
             console.log($scope.response.error);
-            
+
           });
       };
 

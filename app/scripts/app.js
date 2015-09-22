@@ -29,25 +29,48 @@ var probaseUiApp=angular
       .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',
-        controllerAs: 'about'
+        controllerAs: 'about',
+        resolve: {
+                    factory: checkRouting
+                }
       })
       .when('/register', {
         templateUrl: 'views/register.html',
         controller: 'RegisterCtrl',
-        controllerAs: 'register'
+        controllerAs: 'register',
+        resolve: {
+                    factory: checkRouting
+                }
       })
       .when('/feedback', {
         templateUrl: 'views/feedback.html',
         controller: 'FeedbackCtrl',
-        controllerAs: 'feedback'
+        controllerAs: 'feedback',
+        resolve: {
+                    factory: checkRouting
+                }
       })
       .otherwise({
-        redirectTo: '/'
+        redirectTo: '/search',
+        resolve: {
+                    factory: checkRouting
+                }
       });
   });
-
+  var checkRouting= function ($q, GlobalService, $location) {
+      if (GlobalService.authkey!="") {
+          return true;
+      } else {
+          var deferred = $q.defer();
+          deferred.reject();
+          GlobalService.error="It seems you are not logged in!Please login to continue.";
+          $location.path("/");
+          return deferred.promise;
+      }
+  };
 probaseUiApp.factory('GlobalService', function() {
     return {
+      // baseurl:"http://loaclhost:5000/",
         baseurl : 'http://188.166.249.229:5000/',
          //baseurl : 'http://192.168.43.189:5000/',
         error:"",
