@@ -26,7 +26,7 @@ var probaseUiApp=angular
         controller: 'LoginCtrl',
         controllerAs: 'login'
       })
-      .when('/about', {
+      .when('/search', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',
         controllerAs: 'about',
@@ -58,7 +58,7 @@ var probaseUiApp=angular
       });
   });
   var checkRouting= function ($q, GlobalService, $location) {
-      if (GlobalService.authkey!="") {
+      if (GlobalService.authkey!=="") {
           return true;
       } else {
           var deferred = $q.defer();
@@ -70,8 +70,8 @@ var probaseUiApp=angular
   };
 probaseUiApp.factory('GlobalService', function() {
     return {
-      // baseurl:"http://loaclhost:5000/",
-        baseurl : 'http://188.166.249.229:5000/',
+       baseurl:"http://localhost:5000/",
+        // baseurl : 'http://188.166.249.229:5000/',
          //baseurl : 'http://192.168.43.189:5000/',
         error:"",
         authkey:""

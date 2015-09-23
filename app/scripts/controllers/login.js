@@ -8,7 +8,7 @@
  * Controller of the probaseUiApp
  */
 angular.module('probaseUiApp')
-  .controller('LoginCtrl',function (GlobalService,$scope,$http) {
+  .controller('LoginCtrl',function (GlobalService,$location,$scope,$http) {
      $scope.user='Enrollment no.';
      $scope.pass='password';
      $scope.response;
@@ -45,7 +45,9 @@ angular.module('probaseUiApp')
 		      		 }
 		      		else
 		      			{GlobalService.authkey=response.data.authkey;
-		      		 	console.log(response.data);}
+		      		 	console.log(response.data);
+                $location.path("/search");
+              }
 
 		      	}),(function(response){
 		      	$scope.response=response;
