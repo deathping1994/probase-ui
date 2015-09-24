@@ -31,7 +31,9 @@ angular.module('probaseUiApp')
                 {GlobalService.authkey=response.data.authkey;
                 console.log(response.data);}
 
-            }),(function(response){
+            }),
+          (function(response)
+          {
             $scope.response=response;
             console.log($scope.response.error);
 

@@ -11,17 +11,17 @@ angular.module('probaseUiApp')
   .controller('RegisterCtrl',function (GlobalService,$scope,$http) {
 
     $scope.title='';
-    $scope.projecttype='';
+    $scope.projecttype='Minor';
     $scope.description='';
 
 $scope.memberids=[];
 $scope.members =
 [{
-  name:'', eno:'',id:'',branch:''
+  name:'', eno:'',id:'',branch:'Computer Science'
 }];
 
 $scope.addInput = function(){
-    $scope.members.push({name:'', eno:'',id:'',branch:''});
+    $scope.members.push({name:'', eno:'',email:'',branch:''});
 };
 
 $scope.removeInput = function(index){
@@ -44,7 +44,8 @@ $scope.submit = function()
             'projecttype': $scope.projecttype,
             'description': $scope.description,
             'members': $scope.members,
-            'authkey': GlobalService.authkey
+            'authkey': GlobalService.authkey,
+            'usertype':"S"
           };
           console.log(url);
           console.log(data);

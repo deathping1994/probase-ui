@@ -9,11 +9,11 @@
       Project Title</br>
             <input type="text" class="text" ng-model="title" required></br>
       Project Type</br>
-            <input list="projecttype"  ng-model="projecttype" required>
-          <datalist id="projecttype">
-                   <option value="Minor">
-                   <option value="Major">
-                   </datalist></br>
+            <!-- <input list="projecttype"   required> -->
+          <select ng-model="projecttype" required>
+                   <option value="Minor">Minor</option>
+                   <option value="Major">Major</option>
+                   </select></br>
 
                    Project Description</br>
           <input type="text" ng-model="description" required></br>
@@ -26,12 +26,11 @@
             Name:    <input type="text"      ng-model="member.name" required>
             Enroll.: <input type="text"    ng-model="member.eno" required>
             Email:   <input type="email"     ng-model="member.id" required><br/>
-            Branch:<input list="branches" ng-model="member.branch" required>
-                   <datalist id="branches">
-                   <option value="Computer Science">
-                   <option value="Electronic and Comm.">
-                   <option value="Bio-Technology">
-                   </datalist></br>
+            Branch:<select ng-model="member.branch" required>
+                   <option value="Computer Science">Computer Science</option>
+                   <option value="Electronic and Comm.">Electronic and Comm.</option>
+                   <option value="Bio-Technology">Bio-Technology</option>
+                   </select></br>
        
        <br/> <button ng-click="removeInput($index)">Remove User</button>
     </div><br/>

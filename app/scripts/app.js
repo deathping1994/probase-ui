@@ -27,34 +27,34 @@ var probaseUiApp=angular
         controllerAs: 'login'
       })
       .when('/search', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about',
-        resolve: {
-                    factory: checkRouting
-                }
+        templateUrl: 'views/search.html',
+        controller: 'SearchCtrl',
+        controllerAs: 'search'
+        // resolve: {
+        //             factory: checkRouting
+        //         }
       })
       .when('/register', {
         templateUrl: 'views/register.html',
         controller: 'RegisterCtrl',
-        controllerAs: 'register',
-        resolve: {
-                    factory: checkRouting
-                }
+        controllerAs: 'register'
+        // resolve: {
+        //             factory: checkRouting
+        //         }
       })
       .when('/feedback', {
         templateUrl: 'views/feedback.html',
         controller: 'FeedbackCtrl',
-        controllerAs: 'feedback',
-        resolve: {
-                    factory: checkRouting
-                }
+        controllerAs: 'feedback'
+        // resolve: {
+        //             factory: checkRouting
+        //         }
       })
       .otherwise({
-        redirectTo: '/search',
-        resolve: {
-                    factory: checkRouting
-                }
+        redirectTo: '/search'
+       // resolve: {
+       //              factory: checkRouting
+       //          }
       });
   });
   var checkRouting= function ($q, GlobalService, $location) {
