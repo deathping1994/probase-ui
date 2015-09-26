@@ -26,6 +26,14 @@ var probaseUiApp=angular
         controller: 'LoginCtrl',
         controllerAs: 'login'
       })
+      .when('/logout', {
+        templateUrl: 'views/logout.html',
+        controller: 'LogoutCtrl',
+        controllerAs: 'logout',
+        resolve: {
+                    factory: checkRouting
+                }
+      })
       .when('/search', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',
@@ -70,10 +78,13 @@ var probaseUiApp=angular
   };
 probaseUiApp.factory('GlobalService', function() {
     return {
-      //  baseurl:"http://localhost:5000/",
-         baseurl : 'http://188.166.249.229:5000/',
+       baseurl:"http://localhost:5000/",
+        //  baseurl : 'http://188.166.249.229:5000/',
          //baseurl : 'http://192.168.43.189:5000/',
         error:"",
-        authkey:""
+        authkey:"",
+        usertype:"",
+        user:"",
+        loggedin: false
     };
 });

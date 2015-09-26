@@ -25,7 +25,22 @@ angular.module('probaseUiApp')
      	else
      		return 'S';
      	}
-     $scope.date1='DD/MM/YY';
+      $scope.reset = function(){
+        $scope.user="";
+        $scope.pass="";
+        $scope.date1="DD/MM/YYYY"
+      }
+      $scope.blockui=function (opt){
+        if(opt=="start"){
+          $scope.spinner=true;
+          $scope.whitediv=true;
+        }
+        else if (opt=="stop") {
+          $scope.spinner=false;
+          $scope.whitediv=false;
+        }
+      };
+     $scope.date1='DD/MM/YYYY';
      $scope.submit = function()
 		  { var checkboxvalue =retcheckbox();
 		  	var url=GlobalService.baseurl+"login_action";
@@ -35,24 +50,28 @@ angular.module('probaseUiApp')
 		    		'usertype': checkboxvalue,
 		    		'date1': $scope.date1
 		    	};
+          $scope.blockui("start");
 		    $http.post(url,data)
 		      .then(function(response)
-		      	{console.log(response);
-		      		 if(response.data.error!=="")
-		      		 {
+		      	{ if(response.data.error!=="")
+		      		 {$scope.blockui("stop");
 		      		 	GlobalService.error=response.data.error;
 		      		 	$scope.error=GlobalService.error;
+                $scope.reset();
 		      		 }
 		      		else
-		      			{GlobalService.authkey=response.data.authkey;
-		      		 	console.log(response.data);
+		      			{$scope.blockui("stop");
+                  GlobalService.authkey=response.data.authkey;
+                  GlobalService.usertype=response.data.usertype;
+                  GlobalService.user=response.data.user;
+                  GlobalService.loggedin=true;
                 $location.path("/search");
               }
 
 		      	}),(function(response){
 		      	$scope.response=response;
 		      	console.log($scope.response.error);
-
+            blockui("stop");
 		      });
 		  }
 

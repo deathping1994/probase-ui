@@ -19,7 +19,7 @@
   </head>
 
 
-  <body ng-app="probaseUiApp">
+  <body ng-app="probaseUiApp" ng-controller="IndexCtrl">
 
 
     <!--[if lte IE 8]>
@@ -46,10 +46,11 @@
 
             <ul class="nav navbar-nav">
               <li class="active"><a href="#/">Home</a></li>
-              <li><a ng-href="#/about">About</a></li>
+              <li><a ng-href="#/search">Search</a></li>
               <li><a ng-href="#/register">Register Group</a></li>
               <li><a ng-href="#/feedback">Feedback</a></li>
-              <li><a ng-href="#/">Contact</a></li>
+              <li><a ng-href="#/login" ng-if="!loggedin">Login</a></li>
+              <li><a ng-href="#/logout" ng-if="loggedin">Logout<span ng-bind="user"></span></a></li>
             </ul>
           </div>
         </div>
@@ -97,6 +98,8 @@
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/index.js"></script>
+        <script src="scripts/controllers/logout.js"></script>
         <script src="scripts/controllers/login.js"></script>
         <script src="scripts/controllers/about.js"></script>
         <script src="scripts/controllers/register.js"></script>

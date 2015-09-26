@@ -9,7 +9,7 @@
             <p ng-bind="error"></p>
             <input type="text" class="text"onfocus="if(this.value == 'Enrollment no.') { this.value = ''; }" ng-model="user" >
             <input type="password" value="Password" onfocus="if(this.value == 'password') { this.value = ''; }" ng-model="pass">
-            <input type="text" value="DD/MM/YY" onfocus="if(this.value == 'DD/MM/YY') { this.value = ''; }" class="text" ng-model="date1"> <br />
+            <input type="text" value="DD/MM/YYYY" onfocus="if(this.value == 'DD/MM/YYYY') { this.value = ''; }" class="text" ng-model="date1"> <br />
             <input type="radio" name='utype' ng-model="usertype.student">Student
             <input type="radio" name='utype' ng-model="usertype.teacher">Teacher
             <div class="submit">
@@ -19,7 +19,19 @@
 
         </form>
       </div>
+      <div class="overlay" ng-show="whitediv"></div>
       <!--//End-login-form-->
     </div>
-
   </div>
+  <style>
+  .overlay {
+    opacity:    0.6;
+    background: #000;
+    width:      100%;
+    height:     100%;
+    z-index:    10;
+    top:        0;
+    left:       0;
+    position:   fixed;
+  }
+  </style>
