@@ -9,7 +9,7 @@
  */
 angular.module('probaseUiApp')
   .controller('LogoutCtrl',function (GlobalService,$scope,$http) {
-     $scope.submit = function()
+     $scope.logout = function()
      { var url=GlobalService.baseurl+"logout";
         $http.post(url,data)
          .then(function(response)
@@ -22,6 +22,8 @@ angular.module('probaseUiApp')
                  GlobalService.usertype="";
                  GlobalService.user="";
                  GlobalService.loggedin=false;
+                 $scope.$parent.loggedin=false;
+                 $scope.$parent.user="";
                  $scope.success="Successfully Logged Off !"
                $location.path("/search");
              }

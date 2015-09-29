@@ -65,6 +65,8 @@ angular.module('probaseUiApp')
                   GlobalService.usertype=response.data.usertype;
                   GlobalService.user=response.data.user;
                   GlobalService.loggedin=true;
+                  $scope.$parent.loggedin=true;
+                  $scope.$parent.user=response.data.user;
                 $location.path("/search");
               }
 
@@ -74,5 +76,5 @@ angular.module('probaseUiApp')
             blockui("stop");
 		      });
 		  }
-
+      // console.log($scope.$parent.loggedin);
   });

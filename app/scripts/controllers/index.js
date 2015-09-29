@@ -9,10 +9,19 @@
  */
 angular.module('probaseUiApp')
   .controller('IndexCtrl',function (GlobalService,$scope,$http) {
-$scope.user=GlobalService.user;
-$scope.loggedin=GlobalService.loggedin;
-$scope.$watch(GlobalService,function(newval,oldval,scope){
-  $scope.user=GlobalService.user;
-  $scope.loggedin=GlobalService.loggedin;
-});
+$scope.user = GlobalService.user;
+// $scope.loggedin = 'Abcd';
+$scope.loggedin = GlobalService.loggedin;
+// $scope.$watch(function(GlobalService){
+//   return GlobalService
+// },function(newval,oldval,scope){
+//   $scope.user=newval.user;
+//   $scope.loggedin=newval.loggedin;
+//   console.log("watcher called");
+// });
+// $scope.$watch( 'loggedIn', function(newval,oldval,scope){
+  // $scope.user=newval.user;
+  // $scope.loggedin=newval.loggedin;
+  // console.log("watcher called");
+// });
 });
