@@ -40,7 +40,7 @@ $scope.teachersData == function()
                {
                  GlobalService.error=response.data.error;
                  $scope.error=GlobalService.error;
-                
+
                }
               else
                 {
@@ -72,7 +72,7 @@ $scope.submit = function()
             'description': $scope.description,
             'members': $scope.members,
             'authkey': GlobalService.authkey,
-            'usertype':GlobalService.usertype
+            'usertype': GlobalService.usertype
           };
           console.log(url);
           console.log(data);
@@ -85,6 +85,7 @@ $scope.submit = function()
                 console.log(response.data.error);
                 GlobalService.error=response.data.error;
                 $scope.error=GlobalService.error;
+
                 $scope.memberids=[];
                 // console.log("dljjlkjljljlknhkhlhlh;flkj00");
                }

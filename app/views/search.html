@@ -1,4 +1,53 @@
-<div class="container">
+<style>
+    .results-li {
+  background: #FAFAFA;
+  padding: 20px;
+  box-shadow: -4px 0 10px -6px rgba(0,0,0,0.4);
+}
+.detail {
+  background: #fff;
+  padding: 20px;
+}
+
+
+</style>
+
+<div class="col-lg-6 centered">
+    <div class="input-group centered">
+      <input type="text" ng-model="query" class="form-control" placeholder="Search for...">
+      <span class="input-group-btn">
+        <button class="btn btn-default" ng-click="submit()" type="button">Go!</button>
+      </span>
+    </div><!-- /input-group -->
+  </div>
+<br>
+<br><br>
+<table class="container" align=center>
+<tr><td>
+<div class="results" align=center>
+<tr><td>
+<ul class="list-unstyled">
+  <li ng-repeat="x in projects">
+    <div class="results-li">
+    <button ng-click=showdetail(x)><span ng-bind=x._source.title></span></button>
+    <p ng-bind=x._source.description>
+    </p>
+    </div>
+    <br />
+  </li>
+</ul>
+</div>
+</td>
+<td>
+
+<div class="detail" id="detail"><span ng-bind=title></span>
+    <p ng-bind=description></p></div>
+
+</div>
+</td></tr></table>
+
+
+<!-- <div class="container">
 
   <div class="main">
     <div class="register-form">
@@ -13,4 +62,4 @@
         </form>
     </div>
     </div>
-    </div>
+    </div> -->

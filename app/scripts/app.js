@@ -35,7 +35,14 @@ var probaseUiApp=angular
                     factory: checkRouting
                 }
       })
-      
+      .when('/search', {
+        templateUrl: 'views/search.html',
+        controller: 'SearchCtrl',
+        controllerAs: 'search',
+        resolve: {
+                    factory: checkRouting
+                }
+      })
       .when('/register', {
         templateUrl: 'views/register.html',
         controller: 'RegisterCtrl',

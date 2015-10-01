@@ -9,34 +9,31 @@
  */
 angular.module('probaseUiApp')
   .controller('SearchCtrl',function (GlobalService,$scope,$http) {
+    $scope.query="";
+    $scope.showdetail = function(x)
+      {
+        $scope.title=x._source.title;
+        $scope.description=x._source.description;
 
-      	$scope.query = "What Can I find For you ?";
-        $scope.submit = function()
-                {
-                  var url=GlobalService.baseurl+"search";
-                  var data={ 'query' : $scope.query,
-                             'authkey': GlobalService.authkey
-                           };
-                  console.log(data);
-                  $http.post(url,data)
+      };
+    $scope.submit = function()
+          {
+            var url=GlobalService.baseurl+"v1/projects/search";
 
-                    .then(function(response)
-                      {
-                      	console.log(response);
-                         if(response.data.error!=="")
-                         {
-                          GlobalService.error=response.data.error;
-                          $scope.error=GlobalService.error;
-                         }
-                        else
-                          {
-                          	GlobalService.authkey=response.data.authkey;
-                              console.log(response.data);
-                          }
+            var data={ 'query': $scope.query,
+                'authkey': GlobalService.authkey,
+                'usertype': GlobalService.usertype,
+                'user': GlobalService.user
+              };
+              console.log(url);
+            $http.post(url,data)
+              .then(function(response)
+                 {//console.log(response.data);
+                  $scope.projects=response.data.hits;
+                }),(function(response){
+                  GlobalService.error=response.data.error;
+                  $scope.error=GlobalService.error;
 
-                      }),(function(response){
-                      $scope.response=response;
-                      console.log($scope.response.error);
-
-                    });
+              });
           };
+  });
