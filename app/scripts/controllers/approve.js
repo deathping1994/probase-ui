@@ -1,47 +1,38 @@
 'use strict';
 
 angular.module('probaseUiApp')
-  .controller('UpdateCtrl',function (GlobalService,$scope,$http,$location) {
-
-var temp={};
-
-      $scope.change1 = function(){
-       temp.description = $scope.description;
-    };
-      
-      $scope.change2 = function(){
-       temp.synopsis = $scope.synopsis;
-    };
-      $scope.change3 = function(){
-       temp.additional_links = $scope.additionallink;
-    };
-      $scope.change4 = function(){
-       temp.project_report = $scope.projectreport;
-    }; 
-
-
-$scope.submit = function() 
+  .controller('ApproveCtrl',function (GlobalService,$scope,$http) {
+var url;
+$scope.approveme = function() 
 {
+  console.log($scope.approvestatus);
+ if ($scope.approvestatus === false)
+ {
+ url=GlobalService.baseurl+"v1/projects/" + $scope.groupid + "/approve";
 
-var url=GlobalService.baseurl+"v1/projects/update/" + $scope.groupid;
-temp.authkey = GlobalService.authkey;
-temp.usertype = GlobalService.usertype;
+ }
+ else
+ {
+   url=GlobalService.baseurl+"v1/projects/" + $scope.groupid + "/disapprove";
+ 
+ }
+
+var data={'authkey' : GlobalService.authkey,
+          'usertype': GlobalService.usertype,
+          'user'    : GlobalService.user
+        };
 console.log(url);
-console.log(temp);
+console.log(data);
 
-    $http.post(url,temp)
+    $http.post(url,data)
     .then(function(response)
             {
               console.log(response);
               GlobalService.error="";
               $scope.response=response.data.success;
-
-              $scope.temp = {};
-                
              },function(response){
               console.log(response);
             GlobalService.error=response.data.error;
-              console.log(GlobalService.error);
              if(GlobalService.error === "Login Required")
             {
               $scope.response= GlobalService.error;
@@ -58,7 +49,6 @@ console.log(temp);
             $scope.response = GlobalService.error;
             $scope.temp = {};
           }
-            
           });
 
 
@@ -69,7 +59,7 @@ console.log(temp);
 
 $scope.projects = function(){
 
-var url=GlobalService.baseurl+"projects/" + GlobalService.user;
+url=GlobalService.baseurl+"projects/" + GlobalService.user;
 
         var data={ 'authkey': GlobalService.authkey
                  };
@@ -77,28 +67,18 @@ var url=GlobalService.baseurl+"projects/" + GlobalService.user;
           $http.post(url,data)
           .then(function(response)
             {
-              var res=response.data.success;
+              var res =response.data.success;
            
               if (res === "Found projects")
               {
-                 console.log(res);
+                 GlobalService.error="";
                  $scope.projects=response.data.projects.hits;
                 
             }
              },function(response){
             GlobalService.error=response.data.error;
-            console.log(GlobalService.error);
-             if(GlobalService.error === "Login Required")
-            {
-              $scope.response= GlobalService.error;
-              GlobalService.authkey="";
-              $location.path("/");
-            }
-            else
-            {
             $scope.response = GlobalService.error;
-          }
-        });
+          });
      
 };
 
@@ -106,9 +86,8 @@ $scope.showdetail = function(x)
       { 
         $scope.title           =x._source.title;
         $scope.description     =x._source.description;
-        $scope.additionallink =x._source.additional_links;
-        $scope.synopsis        =x._source.synopsis; 
-        $scope.projectreport  =x._source.project_report;
+        $scope.synopsis        =x._source.synopsis;
+        $scope.approvestatus   =x._source.approved;
         $scope.groupid        =x._id;
 
       };

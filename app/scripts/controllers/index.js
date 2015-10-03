@@ -17,8 +17,10 @@ $scope.loggedin = GlobalService.loggedin;
 
 $scope.checklogin = function()
     {
-      if(GlobalService.authkey!= "")
+      if(GlobalService.authkey!== "")
+      {
         $location.path("/search");
+    }
     };
 // $scope.$watch(function(GlobalService){
 //   return GlobalService

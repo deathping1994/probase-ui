@@ -33,16 +33,31 @@ angular.module('probaseUiApp')
                  $scope.response=response.data.success;
                  console.log($scope.response);
                  $timeout(function()
-                  {$location.path("/") 
+                  {$location.path("/"); 
                   }, 2000);
 
                   
              
 
            },function(response){
+            GlobalService.error = response.data.error;
+             if(GlobalService.error === "Login Required")
+            {
+              $scope.response= GlobalService.error;
+              GlobalService.authkey="";
+              GlobalService.usertype="";
+              GlobalService.user="";
+              GlobalService.loggedin=false;
+              $scope.$parent.loggedin=false;
+              $scope.$parent.user="";
+              $location.path("/");
+            }
+            else
+            {
           $scope.response=response.data.error;
           console.log(response);
-         });
+         }
+       });
      };
 
     });

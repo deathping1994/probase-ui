@@ -89,10 +89,15 @@ $scope.submit = function()
                   
             GlobalService.error=response.data.error;
 
-            if(GlobalService.error == "Login Required")
+            if(GlobalService.error === "Login Required")
             {
               $scope.response= GlobalService.error;
               GlobalService.authkey="";
+              GlobalService.usertype="";
+              GlobalService.user="";
+              GlobalService.loggedin=false;
+              $scope.$parent.loggedin=false;
+              $scope.$parent.user="";
               $location.path("/");
             }
             else

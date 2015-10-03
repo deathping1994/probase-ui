@@ -59,6 +59,14 @@ var probaseUiApp=angular
                     factory: checkRouting
                 }
       })
+      .when('/approve', {
+        templateUrl: 'views/approve.html',
+        controller: 'ApproveCtrl',
+        controllerAs: 'approve',
+        resolve: {
+                    factory: checkRouting
+                }
+      })
       .when('/update', {
         templateUrl: 'views/update.html',
         controller: 'UpdateCtrl',

@@ -13,7 +13,7 @@ angular.module('probaseUiApp')
      $scope.$parent.checklogin();
      $scope.user='Enrollment no.';
      $scope.pass='password';
-     $scope.response;
+     $scope.response="";
      $scope.response=GlobalService.error;
      $scope.usertype={student:true,
      					teacher:false
@@ -21,11 +21,16 @@ angular.module('probaseUiApp')
      function retcheckbox()
      	{
      	if($scope.usertype.student)
+      {
      		return 'S';
+      }
      	else if($scope.usertype.teacher)
-     		return 'E';
+     	{	return 'E';
+   }
      	else
+      {
      		return 'S';
+      }
      	}
       $scope.reset = function(){
         $scope.user="Enrollment no.";
@@ -33,11 +38,11 @@ angular.module('probaseUiApp')
         $scope.date1="DD/MM/YYYY";
       };
       $scope.blockui=function (opt){
-        if(opt=="start"){
+        if(opt==="start"){
           $scope.spinner=true;
           $scope.whitediv=true;
         }
-        else if (opt=="stop") {
+        else if (opt==="stop") {
           $scope.spinner=false;
           $scope.whitediv=false;
         }
