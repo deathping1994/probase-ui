@@ -14,6 +14,10 @@ angular.module('probaseUiApp')
       {
         $scope.title=x._source.title;
         $scope.description=x._source.description;
+        $scope.rating     =x._source.rating;
+        $scope.approved   =x._source.approved;
+        $scope.evaluated  =x._source.evaluated;
+        $scope.synopsis   =x._source.synopsis;
 
       };
     $scope.submit = function()
@@ -28,9 +32,9 @@ angular.module('probaseUiApp')
               console.log(url);
             $http.post(url,data)
               .then(function(response)
-                 {//console.log(response.data);
+                 {console.log(response.data);
                   $scope.projects=response.data.hits;
-                }),(function(response){
+                },function(response){
                   GlobalService.error=response.data.error;
                   $scope.error=GlobalService.error;
 

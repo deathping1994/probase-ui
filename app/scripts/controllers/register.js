@@ -13,6 +13,7 @@ angular.module('probaseUiApp')
     $scope.title='';
     $scope.projecttype='Major';
     $scope.description='';
+    $scope.mentor=["mahendragurve"];
 
 $scope.memberids=[];
 $scope.members =
@@ -24,32 +25,28 @@ $scope.addInput = function(){
     $scope.members.push({name:'', eno:'',email:'',branch:''});
 };
 
+$scope.majorSelected = function(){
+    $scope.mentor.push("mahendragurve","mahendragurve","mahendragurve","mahendragurve");
+};
+
+$scope.minorSelected = function(){
+    $scope.mentor.splice(1,4);
+};
 $scope.removeInput = function(index){
     $scope.members.splice(index,1);
 };
 
 
-$scope.teachersData == function()
+$scope.teachersData = function()
 {
 
-    var url=GlobalService.baseurl+"v1/project/create";
+    var url=GlobalService.baseurl+"teachers";
+    console.log(url);
   $http.post(url)
 .then(function(response)
-            {console.log(response);
-               if(response.data.error!="")
-               {
-                 GlobalService.error=response.data.error;
-                 $scope.error=GlobalService.error;
-
-               }
-              else
-                {
-                 $scope.teachers = response;
-                 }
-
-            }),(function(response){
-            $scope.response=response;
-            console.log($scope.response.error);
+            {
+              $scope.teachers = response.data.teachers;
+            
 
           });
 };
@@ -59,11 +56,15 @@ $scope.teachersData == function()
 
 $scope.submit = function()
       {
+
+        console.log($scope.mentor);
+
         for (var x =0; x < $scope.members.length;x++)
         {
           $scope.memberids.push($scope.members[x].eno);
         }
 
+        console.log($scope.memberids);
         var url=GlobalService.baseurl+"v1/project/create";
 
         var data={ 'title': $scope.title,
@@ -72,37 +73,27 @@ $scope.submit = function()
             'description': $scope.description,
             'members': $scope.members,
             'authkey': GlobalService.authkey,
-            'usertype': GlobalService.usertype
+            'usertype': GlobalService.usertype,
+            'mentor' : $scope.mentor
           };
           console.log(url);
           console.log(data);
         $http.post(url,data)
+
           .then(function(response)
-            {console.log(response);
-               if(response.data.error!="")
-               {
-                console.log(response.data.success);
-                console.log(response.data.error);
-                GlobalService.error=response.data.error;
-                $scope.error=GlobalService.error;
+            {
+                GlobalService.error="";
+                $scope.response=response.data.success;
+                $scope.memberids=[]; 
+             },function(response){
 
-                $scope.memberids=[];
-                // console.log("dljjlkjljljlknhkhlhlh;flkj00");
-               }
-              else
-                {
-                  // console.log("dljflkj00");
-                  // console.log(response.data.success);
-                $scope.success=response.data.success;
-                $scope.error=response.data.error;
-                 $scope.error=GlobalService.error;
-                 }
+            GlobalService.error=response.data.error;
+            $scope.response= GlobalService.error;
+            $scope.memberids=[];
 
-            }),(function(response){
-            $scope.response=response;
-            console.log($scope.response.error);
-
+            console.log(response);            
           });
+                   
       };
 
 });

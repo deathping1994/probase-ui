@@ -8,10 +8,16 @@
  * Controller of the probaseUiApp
  */
 angular.module('probaseUiApp')
-  .controller('IndexCtrl',function (GlobalService,$scope,$http) {
+  .controller('IndexCtrl',function (GlobalService,$scope,$http,$location) {
 $scope.user = GlobalService.user;
 // $scope.loggedin = 'Abcd';
 $scope.loggedin = GlobalService.loggedin;
+
+$scope.checklogin = function()
+    {
+      if(GlobalService.authkey!= "")
+        $location.path("/search");
+    };
 // $scope.$watch(function(GlobalService){
 //   return GlobalService
 // },function(newval,oldval,scope){

@@ -48,8 +48,9 @@
               <li class="active"><a href="#/">Home</a></li>
               <li><a ng-href="#/search">Search</a></li>
               <li><a ng-href="#/register">Register Group</a></li>
+              <li><a ng-href="#/update" ng-if="loggedin">Update Project</a></li>
               <li><a ng-href="#/feedback">Feedback</a></li>
-              <li><a ng-href="#/login" ng-if="!loggedin">Login</a></li>
+             <li><a ng-href="#/login" ng-if="!loggedin">Login</a></li>
               <li><a ng-href="#/logout" ng-if="loggedin">Logout<span ng-model="user"></span></a></li>
             </ul>
           </div>
@@ -104,6 +105,7 @@
         <script src="scripts/controllers/search.js"></script>
         <script src="scripts/controllers/register.js"></script>
         <script src="scripts/controllers/feedback.js"></script>
+        <script src="scripts/controllers/update.js"></script>
         <!-- endbuild -->
 </body>
 </html>

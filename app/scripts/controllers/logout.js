@@ -8,30 +8,37 @@
  * Controller of the probaseUiApp
  */
 angular.module('probaseUiApp')
-  .controller('LogoutCtrl',function (GlobalService,$scope,$http) {
-     $scope.logout = function()
-     { var url=GlobalService.baseurl+"logout";
-        $http.post(url,data)
+  .controller('LogoutCtrl',function (GlobalService,$scope,$http,$location) {
+     
+     $scope.logoutme = function()
+     { 
+       var url=GlobalService.baseurl+"logout";
+
+       var data = {
+                 'authkey':GlobalService.authkey,
+                 'usertype':GlobalService.usertype
+       };
+
+     console.log(url,data);
+        $http.post(url)
          .then(function(response)
-           { if(response.data.error!=="")
-              {GlobalService.error=response.data.error;
-               $scope.error=GlobalService.error;
-               }
-             else
-               {GlobalService.authkey="";
+           { 
+                 GlobalService.authkey="";
                  GlobalService.usertype="";
                  GlobalService.user="";
+                 GlobalService.error="";
                  GlobalService.loggedin=false;
                  $scope.$parent.loggedin=false;
                  $scope.$parent.user="";
-                 $scope.success="Successfully Logged Off !"
-               $location.path("/search");
-             }
+                 $scope.response=response.data.success;
+                 console.log($scope.response);
+                 $location.path("/search");
+             
 
-           }),(function(response){
-           $scope.response=response;
-           console.log($scope.response.error);
+           },function(response){
+          $scope.response=response.data.error;
+          console.log(response);
          });
-     }
+     };
 
     });

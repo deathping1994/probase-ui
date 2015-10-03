@@ -22,18 +22,16 @@ angular.module('probaseUiApp')
         $http.post(url,data)
           .then(function(response)
             {console.log(response);
-               if(response.data.error!=="")
-               {
-                GlobalService.error=response.data.error;
-                $scope.error=GlobalService.error;
-               }
-              else
-                {GlobalService.authkey=response.data.authkey;
-                console.log(response.data);}
+                 
+                 GlobalService.error="";
+                 $scope.response=response.data.success;
+              
 
-            }),(function(response){
-            $scope.response=response;
-            console.log($scope.response.error);
+            },function(response){
+             
+           GlobalService.error = response.data.error;
+            $scope.response=GlobalService.error;
+            console.log($scope.response);
 
           });
       };

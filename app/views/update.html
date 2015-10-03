@@ -1,0 +1,45 @@
+<div class="container">
+  
+  <div class="main">
+    <div class="login-form" ng-init="projects()">      
+      <h2 ng-bind="response"></h2>
+   
+    <table class="container" align=center>
+<tr><td>
+<div class="results" align=center>
+<tr><td>
+<ul class="list-unstyled">
+  <li ng-repeat="x in projects">
+    <div class="results-li">
+    <button ng-click=showdetail(x)><span ng-bind=x._source.title></span></button>
+    <p ng-bind=x._source.description>
+    </p>
+    </div>
+    <br />
+  </li>
+</ul>
+</div>
+</td>
+<td>
+
+<div class="detail" id="detail">
+  <h5>Project Title:</h5>
+  <span ng-bind=title></span>
+  <h5>Project Description:</h5>
+  <textarea rows="5" cols="75" ng-model=description ng-change="change1()"></textarea> 
+  <h5>Synopsis:</h5>
+   <textarea rows="10" cols="75" ng-model=synopsis ng-change="change2()"></textarea> 
+   <h5>Additional Link:</h5>
+    <textarea rows="2" cols="75" ng-model=additionallink ng-change="change3()" ></textarea> 
+    <h5>Project Report (Google Drive Url):</h5>
+     <textarea rows="1" cols="75" ng-model=projectreport ng-change="change4()" ></textarea> 
+ </br></br> <input type="submit"  ng-model=groupid ng-click="submit()" value="Update" >
+  
+  </div>
+
+</div>
+</td></tr></table>
+
+    </div>
+  </div>
+</div>
