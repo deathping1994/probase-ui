@@ -80,7 +80,7 @@ $scope.showdetail = function(x)
       { 
         $scope.title           =x._source.title;
         $scope.description     =x._source.description;
-        $scope.additionallink =x._source.additional_link;
+        $scope.additionallink =x._source.additional_links;
         $scope.synopsis        =x._source.synopsis; 
         $scope.projectreport  =x._source.project_report;
         $scope.groupid        =x._id;

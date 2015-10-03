@@ -9,7 +9,9 @@
  */
 angular.module('probaseUiApp')
   .controller('IndexCtrl',function (GlobalService,$scope,$http,$location) {
+
 $scope.user = GlobalService.user;
+$scope.usertype = GlobalService.usertype;
 // $scope.loggedin = 'Abcd';
 $scope.loggedin = GlobalService.loggedin;
 

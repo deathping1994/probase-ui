@@ -63,6 +63,7 @@ angular.module('probaseUiApp')
                   GlobalService.loggedin=true;
                   $scope.$parent.loggedin=true;
                   $scope.$parent.user=response.data.user;
+                  $scope.$parent.usertype =response.data.usertype;
                   GlobalService.error="";
                 //  console.log(GlobalService.user);
                 $location.path("/search");
