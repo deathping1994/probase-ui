@@ -8,7 +8,7 @@
  * Controller of the probaseUiApp
  */
 angular.module('probaseUiApp')
-  .controller('RegisterCtrl',function (GlobalService,$scope,$http) {
+  .controller('RegisterCtrl',function (GlobalService,$scope,$http,$location) {
 
     $scope.title='';
     $scope.projecttype='Major';
@@ -86,10 +86,20 @@ $scope.submit = function()
                 $scope.response=response.data.success;
                 $scope.memberids=[]; 
              },function(response){
-
+                  
             GlobalService.error=response.data.error;
+
+            if(GlobalService.error == "Login Required")
+            {
+              $scope.response= GlobalService.error;
+              GlobalService.authkey="";
+              $location.path("/");
+            }
+            else
+            {
             $scope.response= GlobalService.error;
             $scope.memberids=[];
+          }
 
             console.log(response);            
           });

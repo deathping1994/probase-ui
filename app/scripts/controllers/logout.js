@@ -8,7 +8,7 @@
  * Controller of the probaseUiApp
  */
 angular.module('probaseUiApp')
-  .controller('LogoutCtrl',function (GlobalService,$scope,$http,$location) {
+  .controller('LogoutCtrl',function (GlobalService,$scope,$http,$location,$timeout) {
      
      $scope.logoutme = function()
      { 
@@ -20,7 +20,7 @@ angular.module('probaseUiApp')
        };
 
      console.log(url,data);
-        $http.post(url)
+        $http.post(url,data)
          .then(function(response)
            { 
                  GlobalService.authkey="";
@@ -32,7 +32,11 @@ angular.module('probaseUiApp')
                  $scope.$parent.user="";
                  $scope.response=response.data.success;
                  console.log($scope.response);
-                 $location.path("/search");
+                 $timeout(function()
+                  {$location.path("/") 
+                  }, 2000);
+
+                  
              
 
            },function(response){
