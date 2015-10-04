@@ -14,6 +14,7 @@ angular.module('probaseUiApp')
     $scope.projecttype='Major';
     $scope.description='';
     $scope.mentor=["mahendragurve"];
+    $scope.errors = [];
 
 $scope.memberids=[];
 $scope.members =
@@ -51,15 +52,58 @@ $scope.teachersData = function()
           });
 };
 
+// $scope.validatefun = function(title,description,members)
+// {
+//   if (title == "")
+//   {
+//     $scope.errors[0] = "Title can't be Empty"
+//   }
+//   if (description == "")
+//    {
+//     $scope.errors[1] = "Description can't be Empty"
+//   }
+//   for (var y =0; y < $scope.members.length;y++)
+//          {
+//             var EMAIL_REGEXP = /^[a-z0-9!#$%&'*+/=?^_`{|}~.-]+@example\.com$/i;
+//            if ($scope.members[y].name != /[0-9]?/)
+//            {
+//             $scope.flag = 1;
+//             console.log($scope.members[y].name);
+//             console.log("Flag");
+//            }
+//          }
+//     for (var z =0; z < $scope.members.length;z++)
+//          {
+//            if ($scope.members[z].eno != /^[a-zA-Z]$/)
+//            {
+//             $scope.flag1 = 1;
+
+//             console.log("Flag1");
+//            }
+//          }      
+
+//          if($scope.flag == 1)
+//              {
+//     $scope.errors[2] = "Either Name Field Empty Or Unwanted Symbol";
+//              }
+//         else if ($scope.flag1 == 1)
+//         {
+//    $scope.errors[2] = "Eno. should be No"
+//         }
+//         else
+//         {
+//              $scope.errors[2] = "";
+//         }
+
+// };
+
 
 
 
 $scope.submit = function()
       {
-
-        console.log($scope.mentor);
-
-        for (var x =0; x < $scope.members.length;x++)
+     
+      for (var x =0; x < $scope.members.length;x++)
         {
           $scope.memberids.push($scope.members[x].eno);
         }
@@ -74,6 +118,7 @@ $scope.submit = function()
             'members': $scope.members,
             'authkey': GlobalService.authkey,
             'usertype': GlobalService.usertype,
+            'user'    :GlobalService.user,
             'mentor' : $scope.mentor
           };
           console.log(url);
@@ -111,4 +156,5 @@ $scope.submit = function()
                    
       };
 
+      
 });
