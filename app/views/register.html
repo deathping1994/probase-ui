@@ -10,7 +10,7 @@
       Project Title</br>      
             <input type="text" class="text" ng-model="title" required></br>
       Project Type</br>
-            <select ng-model="projecttype"  >
+            <select ng-model="projecttype" required>
                    <option value="Minor">Minor</option>
                   <option value="Major">Major</option>
                    </select></br>
@@ -22,7 +22,7 @@
                       </select>
                 </div> 
 
-                   <div ng-if="projecttype =='Major'" ng-init="majorSelected()">
+                   <div ng-if="projecttype =='Major'" ng-init="majorSelected()" >
                 <h5>Select Your Choices</h5>
                 <select ng-repeat="m in mentor track by $index" ng-model="mentor[$index]" ng-options="teacher for teacher in teachers | orderBy: 'toString()' " >
                       </select>
@@ -38,22 +38,30 @@
          <!--   To verify output [<span ng-repeat="member in members">"{{member.name}}"</span>]: -->
             <div ng-repeat="member in members">
 
-            Name:    <input type="text"      ng-model="member.name" required>
-            Enroll.: <input type="text"      ng-model="member.eno"    required>
-            Email:   <input type="email" name="email"    ng-model="member.email"   required><br/>
-            Branch:<select ng-model="member.branch" >
+            Name:    <input type="text"  name="namee" ng-pattern="/^[a-zA-Z_ ]*$/"   ng-model="member.name" required>
+            <span ng-show="myForm.namee.$error.pattern">Not a valid Name</span>
+            Enroll.: <input type="text"  name="eno"    ng-model="member.eno"  ng-pattern="/^[0-9]{8,8}$/"  required>
+             <span ng-show="myForm.eno.$error.pattern">Not a valid Eno. No.</span>
+            Email:   <input type="email" name="email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[com|org|net|int|edu|gov|arpa|in]*$/"   ng-model="member.email"   required><br/>
+            <span ng-show="myForm.email.$error.pattern">Not a valid Email</span>
+            Branch:<select ng-model="member.branch" required>
                    <option value="Computer Science">Computer Science</option>
                    <option value="Electronic and Comm.">Electronic and Comm.</option>
                    <option value="Bio-Technology">Bio-Technology</option>
                    </select></br>
+
+
                    
        <br/> <button ng-click="removeInput($index)">Remove User</button>
     </div><br/>
    <br/><div> <button ng-click="addInput()">Add Users</button>
 </div>
+</br>
+<p ng-bind="errormentor"></p>
           <br/> 
      <div ng-if="myForm.$invalid">
                 <p>All Fields R Compulsory and Should Be Correct</p>
+
               </div>
               <div>
               <input type="submit" ng-disabled="myForm.$invalid" value="REGISTER" >
