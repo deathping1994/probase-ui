@@ -48,7 +48,7 @@
               <li class="active"><a href="#/" ng-if="!loggedin">Login</a></li>
               <li><a ng-href="#/search">Search</a></li>
               <li><a ng-href="#/approve" ng-if="loggedin && usertype == 'E'">Approve Group</a></li>
-              <li><a ng-href="#/register">Register Group</a></li>
+              <li><a ng-href="#/register" ng-if="loggedin && usertype == 'S'">Register Group</a></li>
               <li><a ng-href="#/update" ng-if="loggedin && usertype == 'S'">Update Project</a></li>
               <li><a ng-href="#/feedback">Feedback</a></li>
               <li><a ng-href="#/logout" ng-if="loggedin">Logout {{user}}</a></li>

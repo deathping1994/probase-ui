@@ -36,7 +36,9 @@ angular.module('probaseUiApp')
      $scope.submit = function()
 		  { 
 		  	var url=GlobalService.baseurl+"login_action";
-		 
+		    
+        $scope.user =angular.uppercase($scope.user);
+        console.log($scope.user);
 		    var data={ 'user': $scope.user,
 		    		'pass': $scope.pass,
 		    		'usertype':$scope.usertype,
