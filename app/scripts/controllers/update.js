@@ -69,7 +69,8 @@ console.log(temp);
 
 $scope.projects = function(){
 
-var url=GlobalService.baseurl+"projects/" + GlobalService.user;
+var url=GlobalService.baseurl+"/mentor/projects/" + GlobalService.user;
+console.log(url);
 
         var data={ 'authkey': GlobalService.authkey
                  };

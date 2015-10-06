@@ -10,8 +10,14 @@
             <input type="text" class="text"onfocus="if(this.value == 'Enrollment no.') { this.value = ''; }" ng-model="user" >
             <input type="password" value="Password" onfocus="if(this.value == 'password') { this.value = ''; }" ng-model="pass" >
             <input type="text" value="DD/MM/YYYY" onfocus="if(this.value == 'DD/MM/YYYY') { this.value = ''; }" class="text" ng-model="date1"> <br />
-            <input type="radio" name='utype' ng-model="usertype.student">Student
-            <input type="radio" name='utype' ng-model="usertype.teacher">Teacher
+           
+            <input type="radio" ng-model="usertype" value="S">
+             Student
+  
+            <input type="radio" ng-model="usertype" value="E">
+             Teacher
+          
+
             <div class="submit">
               <input type="submit" ng-click="submit()" value="LOGIN" >
           </div>
