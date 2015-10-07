@@ -26,6 +26,7 @@ $scope.addInput = function(){
 };
 
 $scope.majorSelected = function(){
+    $scope.mentor=[];
     $scope.mentor.push("mahendragurve","mahendragurve","mahendragurve","mahendragurve");
 };
 

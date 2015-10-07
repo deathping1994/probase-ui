@@ -8,11 +8,13 @@
   background: #fff;
   padding: 20px;
 }
-
+.buttonlink{
+  cursor:pointer;
+};
 
 </style>
-
-<div class="col-lg-6 centered">
+<div class="col-xs-12 well well-lg">
+<div class="col-xs-12 centered">
     <div class="input-group centered">
       <input type="text" ng-model="query" class="form-control" placeholder="Search for...">
       <span class="input-group-btn">
@@ -20,38 +22,32 @@
       </span>
     </div><!-- /input-group -->
   </div>
-<br>
 <br><br>
 <h3 ng-bind=error></h3>
-<table class="container" align=center>
-<tr><td>
-<div class="results" align=center>
-<tr><td>
-<ul class="list-unstyled">
-  <li ng-repeat="x in projects">
-    <div class="results-li">
-    <button ng-click=showdetail(x)><span ng-bind=x._source.title></span></button>
-    <p ng-bind=x._source.description>
-    </p>
-    </div>
-    <br />
-  </li>
-</ul>
+<div class="col-xs-12 centered">
+<div class="results col-xs-6" align=center>
+    <ul class="list-unstyled">
+      <li ng-repeat="x in projects">
+        <div class="results-li">
+        <a class="buttonlink" ng-click=showdetail(x)><strong><ins><span ng-bind=x._source.title></span></ins></strong></button></a>
+        <p ng-bind=x._source.description>
+        </p>
+        </div>
+        <br />
+      </li>
+    </ul>
 </div>
-</td>
-<td>
-
-<div class="detail" id="detail"><span ng-bind=title></span>
+<div class="detail col-xs-6 centered" ng-if='display' id="detail">
+  <h2><strong><span ng-bind=title></span></strong></h2>
     <p ng-bind=description></p>
-  <p ng-bind=rating></p>
-<p ng-bind=evaluated></p>
-<p ng-bind=approved></p>
-<p ng-bind=synopsis></p></div>
+    <p ng-bind=synopsis></p>
+    <p class="text-success bg-success"ng-if=evaluated>This Project has been evaluated.Rating is <p ng-bind=rating></p></p>
+    <p ng-if="!evaluated && approved"><strong>"This project has been approved but pending evaluation."</strong></p>
+    <p ng-if="!evaluated && !approved"><strong>The project is not approved yet.</strong></p>
+</div>
 
 </div>
-</td></tr></table>
-
-
+</div>
 <!-- <div class="container">
 
   <div class="main">

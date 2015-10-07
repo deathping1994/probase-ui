@@ -39,9 +39,9 @@ var probaseUiApp=angular
         templateUrl: 'views/search.html',
         controller: 'SearchCtrl',
         controllerAs: 'search',
-        resolve: {
-                    factory: checkRouting
-                }
+        // resolve: {
+        //             factory: checkRouting
+        //         }
       })
       .when('/register', {
         templateUrl: 'views/register.html',
@@ -55,9 +55,9 @@ var probaseUiApp=angular
         templateUrl: 'views/feedback.html',
         controller: 'FeedbackCtrl',
         controllerAs: 'feedback',
-        resolve: {
-                    factory: checkRouting
-                }
+        // resolve: {
+        //             factory: checkRouting
+        //         }
       })
       .when('/approve', {
         templateUrl: 'views/approve.html',
@@ -77,9 +77,9 @@ var probaseUiApp=angular
       })
       .otherwise({
         redirectTo: '/search',
-        resolve: {
-                    factory: checkRouting
-                }
+        // resolve: {
+        //             factory: checkRouting
+        //         }
       });
   });
   var checkRouting= function ($q, GlobalService, $location) {

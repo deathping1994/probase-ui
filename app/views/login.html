@@ -1,30 +1,45 @@
-<div class="container">
-  <div class="main">
-    <div class="login-form">
-      <h1>Member Login</h1>
-          <div class="head">
-            <img src="/static/images/user.png" alt=""/>
+<p class="text-danger bg-danger" ng-bind="response"></p>
+            
+<div class="alert alert-info fade in">
+    <p class="close" data-dismiss="alert" aria-label="close">&times;</p>
+    <p class="text-center"><strong>Info!</strong>Welcome to PROBASE, use your Webkiosk login Credentials !</p>
+  </div>
+<div class="jumbotron">
+  
+  <div class="row">
+    <div>
+    <div class="col-xs-12 col-md-6">
+            <img src="/images/user.png" alt=""/>
+            <p>Member Login<p>
           </div>
-        <form>
-            <p ng-bind="response"></p>
-            <input type="text" class="text"onfocus="if(this.value == 'Enrollment no.') { this.value = ''; }" ng-model="user" >
-            <input type="password" value="Password" onfocus="if(this.value == 'password') { this.value = ''; }" ng-model="pass" >
-            <input type="text" value="DD/MM/YYYY" onfocus="if(this.value == 'DD/MM/YYYY') { this.value = ''; }" class="text" ng-model="date1"> <br />
-           
+    <div class="col-xs-12 col-md-6">
+    <div class="login-form ">
+          
+        <form class="form-horizontal" role="form">
+            <div class="form-group form-group-lg">
+              <input type="text" class="input-lg" onfocus="if(this.value == 'Enrollment no.') { this.value = ''; }" ng-model="user" >
+            </div>
+            <div class="form-group form-group-lg">
+            <input type="password" class="input-lg" value="Password" onfocus="if(this.value == 'password') { this.value = ''; }" ng-model="pass" >
+          </div>
+          <div class="form-group form-group-sm">
+            <input type="text" class="input-lg" value="DD/MM/YYYY" onfocus="if(this.value == 'DD/MM/YYYY') { this.value = ''; }" class="text" ng-model="date1">
+          </div>
+          <div class="form-group form-group-lg">
             <input type="radio" ng-model="usertype" value="S">
              Student
   
             <input type="radio" ng-model="usertype" value="E">
              Teacher
-          
-
-            <div class="submit">
-              <input type="submit" ng-click="submit()" value="LOGIN" >
-          </div>
+            </div>
+            <div class="form-group form-group-lg">
+          <button type="submit" class="btn btn-primary input-md" ng-click="submit()"><i class="glyphicon glyphicon-log-in"> Login</i></button>
+  
           <p><a href="https://webkiosk.jiit.ac.in/CommonFiles/ForgetPasswordLogin.jsp">Forgot Password ?</a></p>
 
         </form>
       </div>
+    </div>
       <div class="overlay" ng-show="whitediv"></div>
       <!--//End-login-form-->
     </div>

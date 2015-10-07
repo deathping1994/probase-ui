@@ -44,7 +44,7 @@ angular.module('probaseUiApp')
 		    		'usertype':$scope.usertype,
 		    		'date1': $scope.date1
 		    	};
-        
+        console.log(url);
         $scope.blockui("start");
 		    $http.post(url,data)
 		      .then(function(response)

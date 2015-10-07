@@ -1,60 +1,55 @@
-<div class="container">
-  
+<p class="text-danger bg-danger" ng-bind="response"></p>
+<div class="well well-lg">  
   <div class="main">
     <div class="register-form" ng-init="teachersData()">
-      <h1>Project Registration</h1>
+      <h2>Project Registration</h2>
         
-  <form name="myForm" ng-submit="submit()">
-            
-            <p ng-bind="response"></p>
-      Project Title</br>      
-            <input type="text" class="text" ng-model="title" required></br>
-      Project Type</br>
-            <select ng-model="projecttype" required>
+  <form name="myForm" class="form-horizontal" role="form" ng-submit="submit()">
+            <div class="form-group form-group-md">
+            <input placeholder="Project Title" type="text" class="col-xs-12 input-center input-md" ng-model="title" required>
+          </div>
+          <div class="form-group form-group-md">
+            <label for="selecttype" class="col-xs-3 text-muted">Project Type</label>
+            <div id="selecttype" class="col-xs-9">
+              <select class="form-control input-md" ng-model="projecttype" required>
                    <option value="Minor">Minor</option>
                   <option value="Major">Major</option>
-                   </select></br>
-                   
-                <div ng-if="projecttype =='Minor'" ng-init="minorSelected()">
-                  <h5>Select Your Mentor</h5>
-                 
+                   </select>
+            </div>
+          </div>
+                <div ng-if="projecttype =='Minor'" ng-init="minorSelected()" class="form-group form-group-md">
+                  <label class="text-muted">Select Mentor</label>
+            
            <select ng-repeat="m in mentor track by $index" ng-model="mentor[$index]" ng-options="teacher for teacher in teachers | orderBy: 'toString()' " >
                       </select>
                 </div> 
 
-                   <div ng-if="projecttype =='Major'" ng-init="majorSelected()" >
+                   <div ng-if="projecttype =='Major'" ng-init="majorSelected()" class="form-group form-group-md">
                 <h5>Select Your Choices</h5>
                 <select ng-repeat="m in mentor track by $index" ng-model="mentor[$index]" ng-options="teacher for teacher in teachers | orderBy: 'toString()' " >
                       </select>
-                <h5>Domain</h5>
               </div>
-
-                   Project Description</br>
-            <textarea rows="4" cols="50" ng-model="description" required></textarea>
-          
+          <div ng-if="projecttype =='Major'" ng-init="majorSelected()" class="form-group">
+            <textarea class="form-control" rows="5" placeholder="Short description of your project here..." ng-model="description" required></textarea>
+          </div>
           <!--   Do proper styling -->
-         
-         </br> Team Members</br>
+         Team Members</br>
          <!--   To verify output [<span ng-repeat="member in members">"{{member.name}}"</span>]: -->
             <div ng-repeat="member in members">
 
-            Name:    <input type="text"  name="namee" ng-pattern="/^[a-zA-Z_ ]*$/"   ng-model="member.name" required>
+            <button class="btn-inline btn-danger" class="col-xs-1" ng-click="removeInput($index)"> X</button><input type="text" placeholder="Name" class="col-xs-11 col-md-5 col-lg-3"  name="name" ng-pattern="/^[a-zA-Z_ ]*$/"   ng-model="member.name" required>
             <span ng-show="myForm.namee.$error.pattern">Not a valid Name</span>
-            Enroll.: <input type="text"  name="eno"    ng-model="member.eno"  ng-pattern="/^[0-9]{8,8}$/"  required>
+            <input type="text" placeholder="Enrollment No."  name="eno" class="col-xs-12 col-md-6 col-lg-4"  ng-model="member.eno"  ng-pattern="/^[0-9]{8,8}$/"  required>
              <span ng-show="myForm.eno.$error.pattern">Not a valid Eno. No.</span>
-            Email:   <input type="email" name="email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[com|org|net|int|edu|gov|arpa|in]*$/"   ng-model="member.email"   required><br/>
+            <input type="email" class="col-xs-12 col-md-12 col-lg-4" placeholder="username@domain.com" name="email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[com|org|net|int|edu|gov|arpa|in]*$/"   ng-model="member.email"   required>
             <span ng-show="myForm.email.$error.pattern">Not a valid Email</span>
             Branch:<select ng-model="member.branch" required>
                    <option value="Computer Science">Computer Science</option>
                    <option value="Electronic and Comm.">Electronic and Comm.</option>
                    <option value="Bio-Technology">Bio-Technology</option>
                    </select></br>
-
-
-                   
-       <br/> <button ng-click="removeInput($index)">Remove User</button>
     </div><br/>
-   <br/><div> <button ng-click="addInput()">Add Users</button>
+   <div> <button class="btn btn-primary"ng-click="addInput()">(+)Add Members</button>
 </div>
 </br>
 <p ng-bind="errormentor"></p>
@@ -63,8 +58,8 @@
                 <p>All Fields R Compulsory and Should Be Correct</p>
 
               </div>
-              <div>
-              <input type="submit" ng-disabled="myForm.$invalid" value="REGISTER" >
+              <div class="centered">
+              <button type="submit" class="centered btn btn-primary btn-md" ng-disabled="myForm.$invalid">Register Project</button>
           </div>  
     </form>    
       

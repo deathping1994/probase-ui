@@ -10,8 +10,9 @@
 angular.module('probaseUiApp')
   .controller('SearchCtrl',function (GlobalService,$scope,$http) {
     $scope.query="";
+    $scope.display=false;
     $scope.showdetail = function(x)
-      {
+      { $scope.display=true;
         $scope.title=x._source.title;
         $scope.description=x._source.description;
         $scope.rating     =x._source.rating;

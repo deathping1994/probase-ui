@@ -1,18 +1,16 @@
-<div class="container">
-  
-  <div class="main">
-    <div class="login-form">
-      <h1>Send Us A Message</h1>
-
-       <form>
-            <p ng-bind="success"></p>
-      Your Email:
-            <input type="text"  class="textbox" ng-model="email" ></br>
-      Enter Ur Message:</br>
-              <textarea rows="4" cols="50" ng-model="text"></textarea> 
-
-             <div class="submit">
-              <input type="submit" ng-click="submit()" value="Submit" >
+<div class="jumbotron">
+      <h3><p class="text-muted text-heading">Bugs | Requests | Queries | Feedback</p></h3>
+ <p class="text-success bg-success" ng-bind="response"></p>
+  <div class="container">
+       <form class="form-horizontal" role="form">
+            <div class="form-group">
+            <input type="text" placeholder="your email address" class="form-control col-xs-12" ng-model="email" ><br/>
+              </div>
+              <div class="form-group">
+              <textarea rows="8" class="form-control col-xs-12" ng-model="text"></textarea> 
+              </div>
+             <div class="form-group">
+              <button class="btn btn-primary" ng-click="submit()">Send Feedback</button>
           </div>  
 
         </form>
