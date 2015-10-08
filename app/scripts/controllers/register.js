@@ -22,7 +22,7 @@ $scope.members =
 }];
 
 $scope.addInput = function(){
-    $scope.members.push({name:'', eno:'',email:'',branch:''});
+    $scope.members.push({name:'', eno:'',email:'',branch:'Computer Science'});
 };
 
 $scope.majorSelected = function(){

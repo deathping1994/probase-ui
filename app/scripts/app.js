@@ -71,9 +71,9 @@ var probaseUiApp=angular
         templateUrl: 'views/update.html',
         controller: 'UpdateCtrl',
         controllerAs: 'update',
-        resolve: {
-                    factory: checkRouting
-                }
+        // resolve: {
+        //             factory: checkRouting
+        //         }
       })
       .otherwise({
         redirectTo: '/search',

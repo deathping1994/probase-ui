@@ -10,7 +10,7 @@
           </div>
           <div class="form-group form-group-md">
             <label for="selecttype" class="col-xs-3 text-muted">Project Type</label>
-            <div id="selecttype" class="col-xs-9">
+            <div id="selecttype" class="col-xs-6">
               <select class="form-control input-md" ng-model="projecttype" required>
                    <option value="Minor">Minor</option>
                   <option value="Major">Major</option>
@@ -33,16 +33,18 @@
             <textarea class="form-control" rows="5" placeholder="Short description of your project here..." ng-model="description" required></textarea>
           </div>
           <!--   Do proper styling -->
-         Team Members</br>
+          <span class="text-danger" ng-show="myForm.name.$error.pattern">Not a valid Name</span>
+         <span class="text-danger" ng-show="myForm.eno.$error.pattern">Not a valid Eno. No.</span>
+         <span class="text-danger" ng-show="myForm.email.$error.pattern">Not a valid Email</span>
+         <br/>Team Members</br>
          <!--   To verify output [<span ng-repeat="member in members">"{{member.name}}"</span>]: -->
             <div ng-repeat="member in members">
 
             <button class="btn-inline btn-danger" class="col-xs-1" ng-click="removeInput($index)"> X</button><input type="text" placeholder="Name" class="col-xs-11 col-md-5 col-lg-3"  name="name" ng-pattern="/^[a-zA-Z_ ]*$/"   ng-model="member.name" required>
-            <span ng-show="myForm.namee.$error.pattern">Not a valid Name</span>
             <input type="text" placeholder="Enrollment No."  name="eno" class="col-xs-12 col-md-6 col-lg-4"  ng-model="member.eno"  ng-pattern="/^[0-9]{8,8}$/"  required>
-             <span ng-show="myForm.eno.$error.pattern">Not a valid Eno. No.</span>
+             
             <input type="email" class="col-xs-12 col-md-12 col-lg-4" placeholder="username@domain.com" name="email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[com|org|net|int|edu|gov|arpa|in]*$/"   ng-model="member.email"   required>
-            <span ng-show="myForm.email.$error.pattern">Not a valid Email</span>
+            
             Branch:<select ng-model="member.branch" required>
                    <option value="Computer Science">Computer Science</option>
                    <option value="Electronic and Comm.">Electronic and Comm.</option>
