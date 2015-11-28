@@ -99,7 +99,7 @@ $scope.submit = function()
 
         console.log($scope.memberids);
         var url=GlobalService.baseurl+"v1/project/create";
-
+        console.log ($scope.description);
         var data={ 'title': $scope.title,
             'membersid':$scope.memberids,
             'projecttype': $scope.projecttype,
