@@ -9,8 +9,24 @@
  */
 angular.module('probaseUiApp')
   .controller('SearchCtrl',function (GlobalService,$scope,$http) {
-    $scope.query="";
+    $scope.query="jiit library";
+    $scope.showsidebar=false;
+    $scope.items=3;
     $scope.display=false;
+    $scope.search_github=function()
+    {var url=GlobalService.baseurl+"v1/projects/search?query="+$scope.title
+    +" "+$scope.description 
+    +" "+$scope.languages+"&source=github_repos";
+      $http.get(url)
+              .then(function(response)
+                 {console.log(response.data);
+                  $scope.github_repos=response.data.hits;
+                },function(response){
+                  GlobalService.error=response.data.error;
+                  $scope.error=GlobalService.error;
+
+              });
+    }
     $scope.showdetail = function(x)
       { $scope.display=true;
         $scope.title=x._source.title;
@@ -19,27 +35,34 @@ angular.module('probaseUiApp')
         $scope.approved   =x._source.approved;
         $scope.evaluated  =x._source.evaluated;
         $scope.synopsis   =x._source.synopsis;
-
+        $scope.languages  =x._source.languages
+        $scope.search_github();
+        $scope.showsidebar=true;
       };
     $scope.submit = function()
           {
-            var url=GlobalService.baseurl+"v1/projects/search";
-
-            var data={ 'query': $scope.query,
-                'authkey': GlobalService.authkey,
-                'usertype': GlobalService.usertype,
-                'user': GlobalService.user
-              };
-              console.log(url);
-            $http.post(url,data)
+            var url=GlobalService.baseurl+"v1/projects/search?query="+$scope.query+"&source=github_repos&size=8";
+            $scope.showsidebar=false;
+            $scope.display=false;
+            console.log(url);
+            $http.get(url)
               .then(function(response)
                  {console.log(response.data);
                   $scope.projects=response.data.hits;
+                  if($scope.projects.length) 
+                    {
+                      $scope.showdetail($scope.projects[0]);
+                    }
+                  else{
+                  GlobalService.error="No matching Projects Found";
+                  $scope.error=GlobalService.error;  
+                  }
                 },function(response){
                   GlobalService.error=response.data.error;
                   $scope.error=GlobalService.error;
 
               });
+
           };
   });
 
