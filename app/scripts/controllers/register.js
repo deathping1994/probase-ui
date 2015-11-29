@@ -9,11 +9,12 @@
  */
 angular.module('probaseUiApp')
   .controller('RegisterCtrl',function (GlobalService,$scope,$http,$location) {
-
+    $scope.showsidebar=false;
     $scope.title='';
     $scope.projecttype='Major';
     $scope.description='';
     $scope.mentor=["mahendragurve"];
+    $scope.items=5;
 
 $scope.memberids=[];
 $scope.members =
@@ -71,9 +72,55 @@ $scope.validatefun = function(projecttype,mentor)
 
 };
 
+$scope.search_probase=function(){
+  var url=GlobalService.baseurl+"v1/projects/search?query="+$scope.title
+    +" "+$scope.description 
+    +" "+$scope.languages+"&source=projects";
+      $http.get(url)
+              .then(function(response)
+                 {console.log(response.data);
+                  if(response.data.max_score>0.4)
+                  {
+                    $scope.probase_repos=response.data.hits;
+                  }
+                  else{
+                    $scope.probase_repos=[];  
+                  }
+                },function(response){
+                  GlobalService.error=response.data.error;
+                  $scope.error=GlobalService.error;
 
+              });
+}
+$scope.search_github=function()
+    {var url=GlobalService.baseurl+"v1/projects/search?query="+$scope.title
+    +" "+$scope.description 
+    +" "+$scope.languages+"&source=github_repos";
+      $http.get(url)
+              .then(function(response)
+                 {console.log(response.data);
+                  if(response.data.max_score>0.4)
+                  {
+                    $scope.github_repos=response.data.hits;
+                  }
+                  else{
+                    $scope.github_repos=[];  
+                  }
+                },function(response){
+                  GlobalService.error=response.data.error;
+                  $scope.error=GlobalService.error;
 
+              });
+    }
 
+$scope.showsimilar=function(){
+  if($scope.description.length>40){
+    $scope.search_probase();
+    $scope.search_github();
+    $scope.showsidebar=true;
+  }
+  console.log($scope.showsidebar);
+}
 $scope.submit = function()
       {
         console.log($scope.projecttype);

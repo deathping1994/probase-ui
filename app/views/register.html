@@ -1,6 +1,6 @@
 <p class="text-danger bg-danger" ng-bind="response"></p>
-<div class="well well-lg">  
-  <div class="main">
+<div class="">  
+  <div class="main col-xs-8">
     <div class="register-form" ng-init="teachersData()">
       <h2>Project Registration</h2>
         
@@ -29,8 +29,8 @@
                 <select ng-repeat="m in mentor track by $index" ng-model="mentor[$index]" ng-options="teacher for teacher in teachers | orderBy: 'toString()' " >
                       </select>
               </div>
-          <div ng-if="projecttype =='Major'" ng-init="majorSelected()" class="form-group">
-            <textarea class="form-control" rows="5" placeholder="Short description of your project here..." ng-model="description" required></textarea>
+          <div class="form-group">
+            <textarea ng-change="showsimilar()" class="form-control" rows="5" placeholder="Short description of your project here..." ng-model="description" required></textarea>
           </div>
           <!--   Do proper styling -->
           <span class="text-danger" ng-show="myForm.name.$error.pattern">Not a valid Name</span>
@@ -43,7 +43,7 @@
             <button class="btn-inline btn-danger" class="col-xs-1" ng-click="removeInput($index)"> X</button><input type="text" placeholder="Name" class="col-xs-11 col-md-5 col-lg-3"  name="name" ng-pattern="/^[a-zA-Z_ ]*$/"   ng-model="member.name" required>
             <input type="text" placeholder="Enrollment No."  name="eno" class="col-xs-12 col-md-6 col-lg-4"  ng-model="member.eno"  ng-pattern="/^[0-9]{8,8}$/"  required>
              
-            <input type="email" class="col-xs-12 col-md-12 col-lg-4" placeholder="username@domain.com" name="email" ng-pattern="/^[a-z]+[a-z0-9._]+@[a-z]+\.[com|org|net|int|edu|gov|arpa|in]*$/"   ng-model="member.email"   required>
+            <input type="email" class="col-xs-12 col-md-12 col-lg-4" placeholder="username@domain.com" name="email" ng-pattern="/^[a-z0-9._]+[a-z0-9._]+@[a-z]+\.[com|org|net|int|edu|gov|arpa|in]*$/"   ng-model="member.email"   required>
             
             Branch:<select ng-model="member.branch" required>
                    <option value="Computer Science">Computer Science</option>
@@ -65,8 +65,35 @@
           </div>  
     </form>    
       
-      </div>
-      </div>
-      </div>
+   </div>
+  
+  </div>
+  <div class="col-xs-3" ng-if="showsidebar">
+            <div class="sidebar panel col-xs-12" >
+            <h4 class="text-info" >Similar Projects on Probase</h4>
+            <div class="">
+              <ul class="list-inline list-unstyled">
+                <li class="panel" ng-repeat="repo in probase_repos|limitTo:items">
+                  <p class=" header bg-primary"><span class="glyphicon glyphicon-link"></span> <a class="buttonlink" ng-href={{repo._source.html_url}}>{{repo._source.title}}</a></p>
+                  <p>{{repo._source.description}}</p>
+                  </li>
+              </ul>
+              <button class="btn btn-info" ng-click="items=30">Show More</button>
+          </div>
+        </div>
+        <div class="sidebar panel col-xs-12">
+          <h4 class="text-info" >Similar Projects on github</h4>
+          <div class="">
+            <ul class="list-inline list-unstyled">
+              <li class="panel" ng-repeat="repo in github_repos|limitTo:items">
+                <p class=" header bg-primary"><span class="glyphicon glyphicon-link"></span> <a class="buttonlink" ng-href={{repo._source.html_url}}>{{repo._source.title}}</a></p>
+                <p>{{repo._source.description}}</p>
+                </li>
+            </ul>
+            <button class="btn btn-info" ng-click="items=30">Show More</button>
+        </div>
+      </div> 
+       
+  </div>
+</div>
  
-</form>

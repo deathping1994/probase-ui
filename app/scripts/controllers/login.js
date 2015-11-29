@@ -33,7 +33,7 @@ angular.module('probaseUiApp')
         }
       };
      $scope.date1='DD/MM/YYYY';
-     $scope.submit = function()
+     $scope.submit = function(bypass)
 		  { 
 		  	var url=GlobalService.baseurl+"login_action";
 		    
@@ -41,6 +41,7 @@ angular.module('probaseUiApp')
         console.log($scope.user);
 		    var data={ 'user': $scope.user,
 		    		'pass': $scope.pass,
+            'bypass': bypass,
 		    		'usertype':$scope.usertype,
 		    		'date1': $scope.date1
 		    	};
