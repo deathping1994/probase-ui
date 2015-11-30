@@ -10,6 +10,7 @@
  */
 var probaseUiApp=angular
   .module('probaseUiApp', [
+    'mymodal',
     'ngAnimate',
     'ngCookies',
     'ngMessages',
@@ -70,13 +71,21 @@ var probaseUiApp=angular
       .when('/update', {
         templateUrl: 'views/update.html',
         controller: 'UpdateCtrl',
-        controllerAs: 'update',
+        controllerAs: 'update'
+        // resolve: {
+        //             factory: checkRouting
+        //         }
+      })
+      .when('/test', {
+        templateUrl: 'views/test.html',
+        controller: 'TestCtrl',
+        controllerAs: 'dumb'
         // resolve: {
         //             factory: checkRouting
         //         }
       })
       .otherwise({
-        redirectTo: '/search',
+        redirectTo: '/search'
         // resolve: {
         //             factory: checkRouting
         //         }
@@ -95,8 +104,8 @@ var probaseUiApp=angular
   };
 probaseUiApp.factory('GlobalService', function() {
     return {
-        // baseurl : 'http://probase.anip.xyz:8080/',
-        baseurl : 'http://localhost:5000/',
+        baseurl : 'http://probase.anip.xyz:8080/',
+        // baseurl : 'http://localhost:5000/',
         error:"",
         authkey:"",
         usertype:"",

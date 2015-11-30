@@ -9,7 +9,10 @@
  */
 angular.module('probaseUiApp')
   .controller('LoginCtrl',function (GlobalService,$location,$scope,$http) {
-    
+    $scope.showModal = false;
+    $scope.toggleModal = function(){
+    $scope.showModal = !$scope.showModal;
+    };
      $scope.$parent.checklogin();
      $scope.user='Enrollment no.';
      $scope.pass='password';
@@ -68,6 +71,7 @@ angular.module('probaseUiApp')
 		      		 	GlobalService.error=response.data.error;
 		      		 	$scope.response=GlobalService.error;
                 $scope.reset();
+                $scope.toggleModal();
 		      		 });
 		  };
       // console.log($scope.$parent.loggedin);

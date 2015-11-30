@@ -1,10 +1,56 @@
-<p class="text-danger bg-danger" ng-bind="response"></p>
-<div class="">  
+<modal title="Error" visible="showError">
+    <img class="img-thumbnail img-responsive" src="http://cdn4.wpbeginner.com/wp-content/uploads/2013/12/error.jpg" />
+    <br />
+    <h5 class="bg-danger" ng-bind="response"></h5>
+  </modal>
+
+
+<modal title="Review Project Details" visible="showModal">
+<table>
+  <tr>
+    <td><h5>Project Title</h5></td>
+    <td><b><span ng-bind="title"></span></b></td>
+  </tr>
+  <tr>
+    <td><h5>Type</h5></td>
+    <td><b><span ng-bind="projecttype"></span></b></td>
+  </tr>
+  <tr>
+    <td><h5>Description</h5></td>
+    <td><b><span ng-bind="description"></span></b></td>
+  </tr>
+  <tr>
+    <td><h5>Members</h5></td>
+    <td><ul class="list-unstyled">
+          <li ng-repeat="member in members">
+            <p class="text-info">{{member.name}} <br/><b>Enrollment Number:</b> {{member.eno}} <br/><b>Email: </b>{{member.email}}</p>
+          </li>
+        </ul></td>
+  </tr>
+  <tr>
+    <td><b>Mentor:</b></td>
+    <td><ul class="list-unstyled">
+        <li ng-repeat="m in mentor track by $index">
+          <p class="text-info">{{m}}</p>
+        </li>
+      </ul>
+    </td>
+  </tr>
+<tr>
+  <td colspan=2><p class="pull-right">
+<button class="btn btn-md btn-primary" ng-click="toggleModal()"><i class="fa fa-pencil"></i>Edit</button>
+<button class="btn btn-md btn-warning" ng-click="submit()">Save</button>
+</p>
+</td>
+</tr>
+</table>
+</modal>
+<div>  
   <div class="main col-xs-8">
     <div class="register-form" ng-init="teachersData()">
       <h2>Project Registration</h2>
         
-  <form name="myForm" class="form-horizontal" role="form" ng-submit="submit()">
+  <form name="myForm" class="form-horizontal" role="form" ng-submit="toggleModal()">
             <div class="form-group form-group-md">
             <input placeholder="Project Title" type="text" class="col-xs-12 input-center input-md" ng-model="title" required>
           </div>
@@ -70,7 +116,7 @@
   </div>
   <div class="col-xs-3" ng-if="showsidebar">
             <div class="sidebar panel col-xs-12" >
-            <h4 class="text-info" >Similar Projects on Probase</h4>
+            <h5 class="text-info" >Similar Projects on Probase</h5>
             <div class="">
               <ul class="list-inline list-unstyled">
                 <li class="panel" ng-repeat="repo in probase_repos|limitTo:items">
@@ -82,7 +128,7 @@
           </div>
         </div>
         <div class="sidebar panel col-xs-12">
-          <h4 class="text-info" >Similar Projects on github</h4>
+          <h5 class="text-info" >Similar Projects on github</h5>
           <div class="">
             <ul class="list-inline list-unstyled">
               <li class="panel" ng-repeat="repo in github_repos|limitTo:items">

@@ -1,4 +1,4 @@
-<p class="text-danger bg-danger" ng-bind="response"></p>
+
             
 <div class="alert alert-info fade in">
     <p class="close" data-dismiss="alert" aria-label="close">&times;</p>
@@ -44,6 +44,11 @@
       <!--//End-login-form-->
     </div>
   </div>
+  <modal title="Error" visible="showModal">
+    <img class="img-thumbnail img-responsive" src="http://cdn4.wpbeginner.com/wp-content/uploads/2013/12/error.jpg" />
+    <p class="text-danger bg-danger" ng-bind="response"></p>
+  </modal>
+
   <style>
   .overlay {
     opacity:    0.6;

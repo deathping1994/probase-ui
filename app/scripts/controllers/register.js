@@ -15,6 +15,11 @@ angular.module('probaseUiApp')
     $scope.description='';
     $scope.mentor=["mahendragurve"];
     $scope.items=5;
+    $scope.showModal = false;
+    $scope.showError=false;
+    $scope.toggleModal = function(){
+    $scope.showModal = !$scope.showModal;
+    };
 
 $scope.memberids=[];
 $scope.members =
@@ -121,6 +126,7 @@ $scope.showsimilar=function(){
   }
   console.log($scope.showsidebar);
 }
+
 $scope.submit = function()
       {
         console.log($scope.projecttype);
@@ -134,7 +140,9 @@ $scope.submit = function()
           //    $scope.response    = '';
               $scope.projecttype = 'Minor';
               $scope.mentor.splice(1,4);
-              $scope.errormentor = 'Mentor should be different.';
+              $scope.response = 'Mentor should be different.';
+              $scope.showModal=false;
+              $scope.showError=true;
             }
      else
      {
@@ -172,7 +180,7 @@ $scope.submit = function()
             GlobalService.error=response.data.error;
 
             if(GlobalService.error === "Login Required")
-            {
+            { 
               $scope.response= GlobalService.error;
               GlobalService.authkey="";
               GlobalService.usertype="";
@@ -184,7 +192,9 @@ $scope.submit = function()
             }
             else
             {
+            $scope.showModal=false;
             $scope.response= GlobalService.error;
+            $scope.showError=true;
             $scope.memberids=[];
           }
 

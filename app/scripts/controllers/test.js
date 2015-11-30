@@ -8,10 +8,9 @@
  * Controller of the probaseUiApp
  */
 angular.module('probaseUiApp')
-  .controller('MainCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('TestCtrl', function ($scope) {
+    $scope.showModal = false;
+    $scope.toggleModal = function(){
+        $scope.showModal = !$scope.showModal;
+    };
   });
