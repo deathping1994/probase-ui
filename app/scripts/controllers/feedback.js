@@ -6,7 +6,10 @@ angular.module('probaseUiApp')
 
   	$scope.email = '';
   	$scope.text  = '';
-
+    $scope.showModal = false;
+    $scope.toggleModal = function(){
+    $scope.showModal = !$scope.showModal;
+    };
 
   	$scope.submit = function()
       {
@@ -28,11 +31,11 @@ angular.module('probaseUiApp')
               
 
             },function(response){
-             
+            $scope.toggleModal(); 
            GlobalService.error = response.data.error;
             $scope.response=GlobalService.error;
             console.log($scope.response);
-
+            
           });
       };
 

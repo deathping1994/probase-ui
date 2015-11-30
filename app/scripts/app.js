@@ -104,8 +104,8 @@ var probaseUiApp=angular
   };
 probaseUiApp.factory('GlobalService', function() {
     return {
-        baseurl : 'http://probase.anip.xyz:8080/',
-        // baseurl : 'http://localhost:5000/',
+        // baseurl : 'http://probase.anip.xyz:8080/',
+        baseurl : 'http://localhost:5000/',
         error:"",
         authkey:"",
         usertype:"",

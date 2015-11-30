@@ -3,22 +3,30 @@
 angular.module('probaseUiApp')
   .controller('UpdateCtrl',function (GlobalService,$scope,$http,$location) {
 
-var temp={};
-
-      $scope.change1 = function(){
-       temp.description = $scope.description;
+    $scope.showPreview=false;
+    $scope.showSuccess = false;
+    $scope.showError=false;
+    $scope.hideModal = function(){
+    $scope.showError = false;
+    $scope.showSuccess = false;
+    $scope.showPreview=false;
     };
-      
-      $scope.change2 = function(){
-       temp.synopsis = $scope.synopsis;
+    $scope.errorModal = function(){
+    $scope.showError = true;
+    $scope.showSuccess = false;
+    $scope.showPreview=false;
     };
-      $scope.change3 = function(){
-       temp.additional_links = $scope.additionallink;
+    $scope.successModal = function(){
+    $scope.showError = false;
+    $scope.showSuccess = true;
+    $scope.showPreview=false;
     };
-      $scope.change4 = function(){
-       temp.project_report = $scope.projectreport;
-    }; 
-
+    $scope.previewModal = function(){
+    $scope.showError = false;
+    $scope.showSuccess = false;
+    
+    $scope.showPreview=true;
+    };
 
 $scope.submit = function() 
 {
@@ -34,8 +42,8 @@ console.log(temp);
             {
               console.log(response);
               GlobalService.error="";
-              $scope.response=response.data.success;
-
+              $scope.success=response.data.success;
+              $scope.showSuccess();
               $scope.temp = {};
                 
              },function(response){
@@ -44,7 +52,8 @@ console.log(temp);
               console.log(GlobalService.error);
              if(GlobalService.error === "Login Required")
             {
-              $scope.response= GlobalService.error;
+              $scope.error= GlobalService.error;
+              $scope.showError();
               GlobalService.authkey="";
               GlobalService.usertype="";
               GlobalService.user="";
@@ -55,7 +64,8 @@ console.log(temp);
             }
             else
             {
-            $scope.response = GlobalService.error;
+            $scope.error = GlobalService.error;
+            $scope.showError();
             $scope.temp = {};
           }
             
@@ -69,7 +79,7 @@ console.log(temp);
 
 $scope.projects = function(){
 
-var url=GlobalService.baseurl+"/mentor/projects/" + GlobalService.user;
+var url=GlobalService.baseurl+"projects/" + GlobalService.user;
 console.log(url);
 
         var data={ 'authkey': GlobalService.authkey
@@ -103,14 +113,14 @@ console.log(url);
      
 };
 
-$scope.showdetail = function(x)
+$scope.showdetail = function(index)
       { 
-        $scope.title           =x._source.title;
-        $scope.description     =x._source.description;
-        $scope.additionallink =x._source.additional_links;
-        $scope.synopsis        =x._source.synopsis; 
-        $scope.projectreport  =x._source.project_report;
-        $scope.groupid        =x._id;
+        $scope.title           =$scope.projects[index]._source.title;
+        $scope.description     =$scope.projects[index]._source.description;
+        $scope.additionallink =$scope.projects[index]._source.additional_links;
+        $scope.synopsis        =$scope.projects[index]._source.synopsis; 
+        $scope.projectreport  =$scope.projects[index]._source.project_report;
+        $scope.groupid        =$scope.projects[index]._id;
 
       };
 

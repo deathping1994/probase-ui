@@ -36,12 +36,11 @@ angular.module('probaseUiApp')
         $scope.evaluated  =x._source.evaluated;
         $scope.synopsis   =x._source.synopsis;
         $scope.languages  =x._source.languages
-        $scope.search_github();
         $scope.showsidebar=true;
       };
     $scope.submit = function()
           {
-            var url=GlobalService.baseurl+"v1/projects/search?query="+$scope.query+"&source=github_repos&size=8";
+            var url=GlobalService.baseurl+"v1/projects/search?query="+$scope.query+"&source=probase_repos&size=8";
             $scope.showsidebar=false;
             $scope.display=false;
             console.log(url);
@@ -57,6 +56,7 @@ angular.module('probaseUiApp')
                   GlobalService.error="No matching Projects Found";
                   $scope.error=GlobalService.error;  
                   }
+                  $scope.search_github();
                 },function(response){
                   GlobalService.error=response.data.error;
                   $scope.error=GlobalService.error;
