@@ -1,4 +1,55 @@
 <div class="container">
+<modal title="Error" visible="showError">
+    <img class="img-thumbnail img-responsive" src="http://cdn4.wpbeginner.com/wp-content/uploads/2013/12/error.jpg" />
+    <br />
+    <h5 class="bg-danger" ng-bind="error"></h5>
+  </modal>
+<modal title="Success" visible="showSuccess">
+
+<p ng-if="success" class="text-success"><i class="fa fa-check fa-5x"></i> {{success}}</p>
+</modal>
+
+<modal title="Review Project Details" visible="showPreview">
+  
+<table ng-if="showPreview">
+  <tr>
+    <td><h5>Project Title</h5></td>
+    <td><b><span class="text-muted" ng-bind="title"></span></b></td>
+  </tr>
+  <tr>
+    <td><h5>Type</h5></td>
+    <td><b><span class="text-muted" ng-bind="projecttype"></span></b></td>
+  </tr>
+  <tr>
+    <td><h5>Description</h5></td>
+    <td><b><span class= ng-bind="description"></span></b></td>
+  </tr>
+  <tr class="text-muted">
+    <td><h5>Members</h5></td>
+    <td><ul class="list-unstyled">
+          <li ng-repeat="member in members">
+            <p class="text-info">{{member.name}} <br/><b>Enrollment Number:</b> {{member.eno}} <br/><b>Email: </b>{{member.email}}</p>
+          </li>
+        </ul></td>
+  </tr>
+  <tr class="text-muted">
+    <td><b>Mentor:</b></td>
+    <td><ul class="list-unstyled">
+        <li ng-repeat="m in mentor track by $index">
+          <p class="text-info">{{m}}</p>
+        </li>
+      </ul>
+    </td>
+  </tr>
+<tr>
+  <td colspan=2><p class="pull-right">
+<button class="btn btn-md btn-primary" ng-click="hideModal()"><i class="fa fa-pencil"></i>Edit</button>
+<button class="btn btn-md btn-warning" ng-click="submit()">Save</button>
+</p>
+</td>
+</tr>
+</table>
+</modal>
   
   <div class="main">
     <div class="login-form" ng-init="projects()">      
@@ -11,7 +62,7 @@
 <ul class="list-unstyled">
   <li ng-repeat="x in projects">
     <div class="results-li">
-    <button ng-click=showdetail(x)><span ng-bind=x._source.title></span></button>
+    <button ng-click=showdetail($index)><span ng-bind=x._source.title></span></button>
     <p ng-bind=x._source.description>
     </p>
     </div>
@@ -26,13 +77,13 @@
   <h5>Project Title:</h5>
   <span ng-bind=title></span>
   <h5>Project Description:</h5>
-  <textarea rows="5" cols="75" ng-model=description ng-change="change1()"></textarea> 
+  <textarea rows="5" cols="75" ng-model=description></textarea> 
   <h5>Synopsis:</h5>
-   <textarea rows="10" cols="75" ng-model=synopsis ng-change="change2()"></textarea> 
+   <textarea rows="10" cols="75" ng-model=synopsis></textarea> 
    <h5>Additional Link:</h5>
-    <textarea rows="2" cols="75" ng-model=additionallink ng-change="change3()" ></textarea> 
+    <textarea rows="2" cols="75" ng-model=additionallink></textarea> 
     <h5>Project Report (Google Drive Url):</h5>
-     <textarea rows="1" cols="75" ng-model=projectreport ng-change="change4()" ></textarea> 
+     <textarea rows="1" cols="75" ng-model=projectrepor></textarea> 
  </br></br> <input type="submit"  ng-model=groupid ng-click="submit()" value="Update" >
   
   </div>

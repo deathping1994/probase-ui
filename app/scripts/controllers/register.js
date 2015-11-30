@@ -15,12 +15,29 @@ angular.module('probaseUiApp')
     $scope.description='';
     $scope.mentor=["mahendragurve"];
     $scope.items=5;
-    $scope.showModal = false;
+    $scope.showPreview=false;
+    $scope.showSuccess = false;
     $scope.showError=false;
-    $scope.toggleModal = function(){
-    $scope.showModal = !$scope.showModal;
+    $scope.hideModal = function(){
+    $scope.showError = false;
+    $scope.showSuccess = false;
+    $scope.showPreview=false;
     };
-
+    $scope.errorModal = function(){
+    $scope.showError = true;
+    $scope.showSuccess = false;
+    $scope.showPreview=false;
+    };
+    $scope.successModal = function(){
+    $scope.showError = false;
+    $scope.showSuccess = true;
+    $scope.showPreview=false;
+    };
+    $scope.previewModal = function(){
+    $scope.showError = false;
+    $scope.showSuccess = false;
+    $scope.showPreview=true;
+    };
 $scope.memberids=[];
 $scope.members =
 [{
@@ -53,8 +70,6 @@ $scope.teachersData = function()
 .then(function(response)
             {
               $scope.teachers = response.data.teachers;
-            
-
           });
 };
 
@@ -80,7 +95,7 @@ $scope.validatefun = function(projecttype,mentor)
 $scope.search_probase=function(){
   var url=GlobalService.baseurl+"v1/projects/search?query="+$scope.title
     +" "+$scope.description 
-    +" "+$scope.languages+"&source=projects";
+    +" "+$scope.languages+"&source=probase_repos";
       $http.get(url)
               .then(function(response)
                  {console.log(response.data);
@@ -140,9 +155,8 @@ $scope.submit = function()
           //    $scope.response    = '';
               $scope.projecttype = 'Minor';
               $scope.mentor.splice(1,4);
-              $scope.response = 'Mentor should be different.';
-              $scope.showModal=false;
-              $scope.showError=true;
+              $scope.error = 'Mentor should be different.';
+              $scope.errorModal();
             }
      else
      {
@@ -170,18 +184,19 @@ $scope.submit = function()
         $http.post(url,data)
 
           .then(function(response)
-            {
+            {   $scope.success=true;
                 GlobalService.error="";
-                $scope.response=response.data.success;
+                $scope.success=response.data.success;
                 $scope.memberids=[];
                 console.log(response);
+                $scope.successModal();
              },function(response){
                   
             GlobalService.error=response.data.error;
 
             if(GlobalService.error === "Login Required")
             { 
-              $scope.response= GlobalService.error;
+              $scope.error= GlobalService.error;
               GlobalService.authkey="";
               GlobalService.usertype="";
               GlobalService.user="";
@@ -189,12 +204,12 @@ $scope.submit = function()
               $scope.$parent.loggedin=false;
               $scope.$parent.user="";
               $location.path("/");
+              $scope.errorModal();
             }
             else
             {
-            $scope.showModal=false;
-            $scope.response= GlobalService.error;
-            $scope.showError=true;
+            $scope.error= GlobalService.error;
+            $scope.errorModal();
             $scope.memberids=[];
           }
 

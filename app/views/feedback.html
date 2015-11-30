@@ -1,6 +1,5 @@
 <div class="jumbotron">
       <h3><p class="text-muted text-heading">Bugs | Requests | Queries | Feedback</p></h3>
- <p class="text-success bg-success" ng-bind="response"></p>
   <div class="container">
        <form class="form-horizontal" role="form">
             <div class="form-group">
@@ -20,5 +19,8 @@
       </div>
       </div>
       </div>
+<modal title="Error" visible="showModal">
+    <p class="text-danger" ng-bind="response"></p>
+  </modal>
         
       

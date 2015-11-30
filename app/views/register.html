@@ -1,12 +1,16 @@
 <modal title="Error" visible="showError">
     <img class="img-thumbnail img-responsive" src="http://cdn4.wpbeginner.com/wp-content/uploads/2013/12/error.jpg" />
     <br />
-    <h5 class="bg-danger" ng-bind="response"></h5>
+    <h5 class="bg-danger" ng-bind="error"></h5>
   </modal>
+<modal title="Success" visible="showSuccess">
 
+<p ng-if="success" class="text-success"><i class="fa fa-check fa-5x"></i> {{success}}</p>
+</modal>
 
-<modal title="Review Project Details" visible="showModal">
-<table>
+<modal title="Review Project Details" visible="showPreview">
+  
+<table ng-if="showPreview">
   <tr>
     <td><h5>Project Title</h5></td>
     <td><b><span ng-bind="title"></span></b></td>
@@ -38,7 +42,7 @@
   </tr>
 <tr>
   <td colspan=2><p class="pull-right">
-<button class="btn btn-md btn-primary" ng-click="toggleModal()"><i class="fa fa-pencil"></i>Edit</button>
+<button class="btn btn-md btn-primary" ng-click="hideModal()"><i class="fa fa-pencil"></i>Edit</button>
 <button class="btn btn-md btn-warning" ng-click="submit()">Save</button>
 </p>
 </td>
@@ -50,7 +54,7 @@
     <div class="register-form" ng-init="teachersData()">
       <h2>Project Registration</h2>
         
-  <form name="myForm" class="form-horizontal" role="form" ng-submit="toggleModal()">
+  <form name="myForm" class="form-horizontal" role="form" ng-submit="previewModal()">
             <div class="form-group form-group-md">
             <input placeholder="Project Title" type="text" class="col-xs-12 input-center input-md" ng-model="title" required>
           </div>
