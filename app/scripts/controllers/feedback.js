@@ -6,11 +6,22 @@ angular.module('probaseUiApp')
 
   	$scope.email = '';
   	$scope.text  = '';
-    $scope.showModal = false;
-    $scope.toggleModal = function(){
-    $scope.showModal = !$scope.showModal;
+    $scope.showSuccess = false;
+    $scope.showError=false;
+    $scope.hideModal = function(){
+    $scope.showError = false;
+    $scope.showSuccess = false;
     };
-
+    $scope.errorModal = function(){
+    $scope.showError = true;
+    $scope.showSuccess = false;
+    $scope.showPreview=false;
+    };
+    $scope.successModal = function(){
+    $scope.showError = false;
+    $scope.showSuccess = true;
+    $scope.showPreview=false;
+    };
   	$scope.submit = function()
       {
 
@@ -25,15 +36,15 @@ angular.module('probaseUiApp')
         $http.post(url,data)
           .then(function(response)
             {console.log(response);
-                 
+                 $scope.successModal();
                  GlobalService.error="";
-                 $scope.response=response.data.success;
+                 $scope.success=response.data.success;
               
 
             },function(response){
-            $scope.toggleModal(); 
            GlobalService.error = response.data.error;
-            $scope.response=GlobalService.error;
+            $scope.error=GlobalService.error;
+            $scope.errorModal(); 
             console.log($scope.response);
             
           });

@@ -1,4 +1,4 @@
-<div class="container">
+
 <modal title="Error" visible="showError">
     <img class="img-thumbnail img-responsive" src="http://cdn4.wpbeginner.com/wp-content/uploads/2013/12/error.jpg" />
     <br />
@@ -17,31 +17,30 @@
     <td><b><span class="text-muted" ng-bind="title"></span></b></td>
   </tr>
   <tr>
-    <td><h5>Type</h5></td>
-    <td><b><span class="text-muted" ng-bind="projecttype"></span></b></td>
-  </tr>
-  <tr>
     <td><h5>Description</h5></td>
     <td><b><span class= ng-bind="description"></span></b></td>
   </tr>
-  <tr class="text-muted">
-    <td><h5>Members</h5></td>
-    <td><ul class="list-unstyled">
-          <li ng-repeat="member in members">
-            <p class="text-info">{{member.name}} <br/><b>Enrollment Number:</b> {{member.eno}} <br/><b>Email: </b>{{member.email}}</p>
-          </li>
-        </ul></td>
+  <tr>
+    <td><h5>Synopsis</h5></td>
+    <td><b><span class= ng-bind="synopsis"></span></b></td>
   </tr>
-  <tr class="text-muted">
-    <td><b>Mentor:</b></td>
-    <td><ul class="list-unstyled">
-        <li ng-repeat="m in mentor track by $index">
-          <p class="text-info">{{m}}</p>
-        </li>
-      </ul>
-    </td>
+  <tr>
+    <td><h5>Project Report</h5></td>
+    <td><b><span class= ng-bind="project_report"></span></b></td>
   </tr>
-<tr>
+  <tr>
+    <td><h5>Additional Links</h5></td>
+    <td><b><span class= ng-bind="additional_link"></span></b></td>
+  </tr>
+  <tr>
+    <td><h5>Source Code</h5></td>
+    <td><b><span class= ng-bind="source_code"></span></b></td>
+  </tr>
+  <tr>
+    <td><h5>Languages/Frameworks:</h5></td>
+    <td><b><span class= ng-bind="lang"></span></b></td>
+  </tr>
+  <tr>
   <td colspan=2><p class="pull-right">
 <button class="btn btn-md btn-primary" ng-click="hideModal()"><i class="fa fa-pencil"></i>Edit</button>
 <button class="btn btn-md btn-warning" ng-click="submit()">Save</button>
@@ -51,46 +50,62 @@
 </table>
 </modal>
   
-  <div class="main">
-    <div class="login-form" ng-init="projects()">      
-      <p ng-bind="response"></p>
-   
-    <table class="container" align=center>
-<tr><td>
-<div class="results" align=center>
-<tr><td>
-<ul class="list-unstyled">
-  <li ng-repeat="x in projects">
-    <div class="results-li">
-    <button ng-click=showdetail($index)><span ng-bind=x._source.title></span></button>
-    <p ng-bind=x._source.description>
-    </p>
-    </div>
-    <br />
-  </li>
-</ul>
-</div>
-</td>
-<td>
-
-<div class="detail" id="detail">
-  <h5>Project Title:</h5>
-  <span ng-bind=title></span>
-  <h5>Project Description:</h5>
-  <textarea rows="5" cols="75" ng-model=description></textarea> 
-  <h5>Synopsis:</h5>
-   <textarea rows="10" cols="75" ng-model=synopsis></textarea> 
-   <h5>Additional Link:</h5>
-    <textarea rows="2" cols="75" ng-model=additionallink></textarea> 
-    <h5>Project Report (Google Drive Url):</h5>
-     <textarea rows="1" cols="75" ng-model=projectrepor></textarea> 
- </br></br> <input type="submit"  ng-model=groupid ng-click="submit()" value="Update" >
-  
+  <div ng-init="projects()" class="col-xs-12 ">
+   <h3 class="text-center" ng-if="!projectsFound"><i class="fa fa-frown-o fa-5x"></i><br />Seems like you have not Registered any Projects yet!</h3>
+  <div ng-if="projectsFound" class="row">
+ <div class="well col-xs-4">
+  <div>          
+    <ul class="list-unstyled">
+    <li ng-repeat="x in projects">
+      <div class="results-li">
+        <button ng-click=showdetail($index)><span ng-bind=x._source.title></span></button>
+        <p ng-bind=x._source.description>
+        </p>
+      </div>
+      <br />
+    </li>
+  </ul>
   </div>
-
-</div>
-</td></tr></table>
-
-    </div>
+ </div> 
+<div class="well col-xs-7 col-xs-offset-1">
+  <table>
+    <tr>
+      <td><h5>Project Title:</h5></td>
+      <td ng-if="approved || evaluated"><span class="text-muted" ng-bind=title></span><i class="fa fa-lock"></i></td>
+      <td ng-if="!approved && !evaluated"><input type="text" class="input-md" ng-model=title /><i class="fa fa-pencil-square-o"></i></td>
+    </tr>
+    <tr>
+      <td><h5>Project Description:</h5></td>
+      <td ng-if="approved || evaluated"><p class="text-muted" rows="5" cols="50" ng-model=description></p><i class="fa fa-lock"></i></td>
+      <td ng-if="!approved && !evaluated"><textarea rows="5" cols="50" ng-model=description></textarea><i class="fa fa-pencil-square-o"></i></td>
+    </tr> 
+    <tr>
+      <td><h5>Synopsis:</h5></td>
+      <td><textarea rows="10" cols="50" ng-model=synopsis></textarea></td>
+    </tr> 
+    <tr>
+      <td><h5>Additional Links:</h5></td>
+      <td><textarea rows="2" cols="50" ng-model="additional_links"></textarea></td> 
+    </tr>
+    <tr>
+      <td><h5>Project Report (Google Drive Url):</h5>
+          <p class="text-info">Don't forget to share this file with your mentor.</p>
+      </td>
+      <td><textarea rows="1" cols="50" ng-model="project_report"></textarea></td>
+    </tr> 
+    <tr>
+      <td><h5>Source Code:</h5></td>
+      <td><textarea rows="2" cols="50" ng-model="source_code"></textarea></td> 
+    </tr>
+    <tr>
+      <td><h5>Languages/Frameworks:</h5></td>
+      <td><textarea rows="2" cols="50" ng-model="lang"></textarea></td> 
+    </tr>
+    <tr>
+      <td colspan=2><input type="submit"  ng-model=groupid ng-click="submit()" value="Update" >
+      </td>
+    </tr>
+  </table>
   </div>
+</div>
 </div>

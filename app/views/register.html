@@ -24,6 +24,10 @@
     <td><b><span ng-bind="description"></span></b></td>
   </tr>
   <tr>
+    <td><h5>Semester</h5></td>
+    <td><b><span ng-bind="semester"></span></b></td>
+  </tr>
+  <tr>
     <td><h5>Members</h5></td>
     <td><ul class="list-unstyled">
           <li ng-repeat="member in members">
@@ -49,7 +53,7 @@
 </tr>
 </table>
 </modal>
-<div>  
+<div class="container-fluid well">  
   <div class="main col-xs-8">
     <div class="register-form" ng-init="teachersData()">
       <h2>Project Registration</h2>
@@ -87,6 +91,7 @@
          <span class="text-danger" ng-show="myForm.eno.$error.pattern">Not a valid Eno. No.</span>
          <span class="text-danger" ng-show="myForm.email.$error.pattern">Not a valid Email</span>
          <br/>Team Members</br>
+         <input type="text" ng-model="semester" placeholder="Semester"/>
          <!--   To verify output [<span ng-repeat="member in members">"{{member.name}}"</span>]: -->
             <div ng-repeat="member in members">
 

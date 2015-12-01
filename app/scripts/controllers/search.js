@@ -52,10 +52,6 @@ angular.module('probaseUiApp')
                     {
                       $scope.showdetail($scope.projects[0]);
                     }
-                  else{
-                  GlobalService.error="No matching Projects Found";
-                  $scope.error=GlobalService.error;  
-                  }
                   $scope.search_github();
                 },function(response){
                   GlobalService.error=response.data.error;

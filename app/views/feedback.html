@@ -1,3 +1,4 @@
+
 <div class="jumbotron">
       <h3><p class="text-muted text-heading">Bugs | Requests | Queries | Feedback</p></h3>
   <div class="container">
@@ -19,8 +20,14 @@
       </div>
       </div>
       </div>
-<modal title="Error" visible="showModal">
-    <p class="text-danger" ng-bind="response"></p>
+<modal title="Error" visible="showError">
+    <img class="img-thumbnail img-responsive" src="http://cdn4.wpbeginner.com/wp-content/uploads/2013/12/error.jpg" />
+    <br />
+    <h5 class="bg-danger" ng-bind="error"></h5>
   </modal>
+<modal title="Success" visible="showSuccess">
+
+<p ng-if="success" class="text-success"><i class="fa fa-check fa-5x"></i><br/> {{success}}</p>
+</modal>
         
       

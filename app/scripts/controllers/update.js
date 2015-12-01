@@ -2,7 +2,8 @@
 
 angular.module('probaseUiApp')
   .controller('UpdateCtrl',function (GlobalService,$scope,$http,$location) {
-
+    $scope.temp={};
+    $scope.projectsFound=false;
     $scope.showPreview=false;
     $scope.showSuccess = false;
     $scope.showError=false;
@@ -32,20 +33,16 @@ $scope.submit = function()
 {
 
 var url=GlobalService.baseurl+"v1/projects/update/" + $scope.groupid;
-temp.authkey = GlobalService.authkey;
-temp.usertype = GlobalService.usertype;
+$scope.temp.authkey = GlobalService.authkey;
+$scope.temp.usertype = GlobalService.usertype;
 console.log(url);
-console.log(temp);
-
     $http.post(url,temp)
     .then(function(response)
             {
               console.log(response);
               GlobalService.error="";
               $scope.success=response.data.success;
-              $scope.showSuccess();
-              $scope.temp = {};
-                
+              $scope.showSuccess();  
              },function(response){
               console.log(response);
             GlobalService.error=response.data.error;
@@ -66,7 +63,6 @@ console.log(temp);
             {
             $scope.error = GlobalService.error;
             $scope.showError();
-            $scope.temp = {};
           }
             
           });
@@ -92,8 +88,10 @@ console.log(url);
            
               if (res === "Found projects")
               {
+                 $scope.projectsFound=true;
                  console.log(res);
                  $scope.projects=response.data.projects.hits;
+                 $scope.showdetail(0);
                 
             }
              },function(response){
@@ -115,13 +113,13 @@ console.log(url);
 
 $scope.showdetail = function(index)
       { 
-        $scope.title           =$scope.projects[index]._source.title;
-        $scope.description     =$scope.projects[index]._source.description;
-        $scope.additionallink =$scope.projects[index]._source.additional_links;
-        $scope.synopsis        =$scope.projects[index]._source.synopsis; 
-        $scope.projectreport  =$scope.projects[index]._source.project_report;
-        $scope.groupid        =$scope.projects[index]._id;
-
+        $scope.temp.title           =$scope.projects[index]._source.title;
+        $scope.temp.description     =$scope.projects[index]._source.description;
+        $scope.temp.additional_links =$scope.projects[index]._source.additional_links;
+        $scope.temp.synopsis        =$scope.projects[index]._source.synopsis; 
+        $scope.temp.project_report  =$scope.projects[index]._source.project_report;
+        $scope.temp.groupid        =$scope.projects[index]._id;
+        $scope.temp.lang        =$scope.projects[index].lang;
       };
 
 });

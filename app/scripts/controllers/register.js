@@ -10,6 +10,7 @@
 angular.module('probaseUiApp')
   .controller('RegisterCtrl',function (GlobalService,$scope,$http,$location) {
     $scope.showsidebar=false;
+    $scope.semester="";
     $scope.title='';
     $scope.projecttype='Major';
     $scope.description='';
@@ -177,7 +178,8 @@ $scope.submit = function()
             'authkey': GlobalService.authkey,
             'usertype': GlobalService.usertype,
             'user'    :GlobalService.user,
-            'mentor' : $scope.mentor
+            'mentor' : $scope.mentor,
+            'semester':$scope.semester
           };
           console.log(url);
           console.log(data);
