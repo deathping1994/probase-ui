@@ -9,6 +9,7 @@
  */
 angular.module('probaseUiApp')
   .controller('LoginCtrl',function (GlobalService,$location,$scope,$http) {
+    $scope.mentorcode="";
     $scope.showModal = false;
     $scope.toggleModal = function(){
     $scope.showModal = !$scope.showModal;
@@ -46,9 +47,10 @@ angular.module('probaseUiApp')
 		    		'pass': $scope.pass,
             'bypass': true,
 		    		'usertype':$scope.usertype,
-		    		'date1': $scope.date1
+		    		'date1': $scope.date1,
+            'mentorcode': $scope.mentorcode
 		    	};
-        console.log(url);
+        console.log(data);
         $scope.blockui("start");
 		    $http.post(url,data)
 		      .then(function(response)

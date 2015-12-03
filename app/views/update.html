@@ -11,37 +11,37 @@
 
 <modal title="Review Project Details" visible="showPreview">
   
-<table ng-if="showPreview">
+<table class="table table-responsive" ng-if="showPreview">
   <tr>
     <td><h5>Project Title</h5></td>
-    <td><b><span class="text-muted" ng-bind="title"></span></b></td>
+    <td><b><span class="text-muted" ng-bind="temp.title"></span></b></td>
   </tr>
   <tr>
     <td><h5>Description</h5></td>
-    <td><b><span class= ng-bind="description"></span></b></td>
+    <td><b><span class="text-muted" ng-bind="temp.description"></span></b></td>
   </tr>
   <tr>
     <td><h5>Synopsis</h5></td>
-    <td><b><span class= ng-bind="synopsis"></span></b></td>
+    <td><b><span class= "text-muted" ng-bind="temp.synopsis"></span></b></td>
   </tr>
   <tr>
     <td><h5>Project Report</h5></td>
-    <td><b><span class= ng-bind="project_report"></span></b></td>
+    <td><b><span class= "text-muted" ng-bind="temp.project_report"></span></b></td>
   </tr>
   <tr>
     <td><h5>Additional Links</h5></td>
-    <td><b><span class= ng-bind="additional_link"></span></b></td>
+    <td><b><span class="text-muted" ng-bind="temp.additional_link"></span></b></td>
   </tr>
   <tr>
     <td><h5>Source Code</h5></td>
-    <td><b><span class= ng-bind="source_code"></span></b></td>
+    <td><b><span class= "text-muted" ng-bind="temp.source_code"></span></b></td>
   </tr>
   <tr>
     <td><h5>Languages/Frameworks:</h5></td>
-    <td><b><span class= ng-bind="lang"></span></b></td>
+    <td><b><span class="text-muted" ng-bind="temp.lang"></span></b></td>
   </tr>
   <tr>
-  <td colspan=2><p class="pull-right">
+  <td colspan=2 class="text-right"><p class="pull-right">
 <button class="btn btn-md btn-primary" ng-click="hideModal()"><i class="fa fa-pencil"></i>Edit</button>
 <button class="btn btn-md btn-warning" ng-click="submit()">Save</button>
 </p>
@@ -62,7 +62,7 @@
         <p ng-bind=x._source.description>
         </p>
       </div>
-      <br />
+      <br/>
     </li>
   </ul>
   </div>
@@ -71,38 +71,38 @@
   <table>
     <tr>
       <td><h5>Project Title:</h5></td>
-      <td ng-if="approved || evaluated"><span class="text-muted" ng-bind=title></span><i class="fa fa-lock"></i></td>
-      <td ng-if="!approved && !evaluated"><input type="text" class="input-md" ng-model=title /><i class="fa fa-pencil-square-o"></i></td>
+      <td ng-if="temp.approved || temp.evaluated"><span class="text-muted" ng-bind="temp.title"></span><i class="fa fa-lock"></i></td>
+      <td ng-if="!temp.approved && !temp.evaluated"><input type="text" class="input-md" ng-model="temp.title" /><i class="fa fa-pencil-square-o"></i></td>
     </tr>
     <tr>
       <td><h5>Project Description:</h5></td>
-      <td ng-if="approved || evaluated"><p class="text-muted" rows="5" cols="50" ng-model=description></p><i class="fa fa-lock"></i></td>
-      <td ng-if="!approved && !evaluated"><textarea rows="5" cols="50" ng-model=description></textarea><i class="fa fa-pencil-square-o"></i></td>
+      <td ng-if="temp.approved || temp.evaluated"><p class="text-muted" rows="5" cols="50" ng-model=temp.description></p><i class="fa fa-lock"></i></td>
+      <td ng-if="!temp.approved && !temp.evaluated"><textarea rows="5" cols="50" ng-model=temp.description></textarea><i class="fa fa-pencil-square-o"></i></td>
     </tr> 
     <tr>
       <td><h5>Synopsis:</h5></td>
-      <td><textarea rows="10" cols="50" ng-model=synopsis></textarea></td>
+      <td><textarea rows="10" cols="50" ng-model="temp.synopsis"></textarea></td>
     </tr> 
     <tr>
       <td><h5>Additional Links:</h5></td>
-      <td><textarea rows="2" cols="50" ng-model="additional_links"></textarea></td> 
+      <td><textarea rows="2" cols="50" ng-model="temp.additional_links"></textarea></td> 
     </tr>
     <tr>
       <td><h5>Project Report (Google Drive Url):</h5>
           <p class="text-info">Don't forget to share this file with your mentor.</p>
       </td>
-      <td><textarea rows="1" cols="50" ng-model="project_report"></textarea></td>
+      <td><textarea rows="1" cols="50" ng-model="temp.project_report"></textarea></td>
     </tr> 
     <tr>
       <td><h5>Source Code:</h5></td>
-      <td><textarea rows="2" cols="50" ng-model="source_code"></textarea></td> 
+      <td><textarea rows="2" cols="50" ng-model="temp.source_code"></textarea></td> 
     </tr>
     <tr>
       <td><h5>Languages/Frameworks:</h5></td>
-      <td><textarea rows="2" cols="50" ng-model="lang"></textarea></td> 
+      <td><textarea rows="2" cols="50" ng-model="temp.lang"></textarea></td> 
     </tr>
     <tr>
-      <td colspan=2><input type="submit"  ng-model=groupid ng-click="submit()" value="Update" >
+      <td colspan=2><button type="submit" class="pull-right btn btn-lg btn-primary"  ng-model="temp.groupid" ng-click="previewModal()"><i class="fa fa-upload"></i> Update</button> 
       </td>
     </tr>
   </table>

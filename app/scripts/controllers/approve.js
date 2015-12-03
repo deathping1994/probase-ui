@@ -59,23 +59,24 @@ console.log(data);
 
 $scope.projects = function(){
 
-url=GlobalService.baseurl+"projects/" + GlobalService.user;
+url=GlobalService.baseurl+"mentor/projects/" + GlobalService.user;
 
         var data={ 'authkey': GlobalService.authkey
                  };
-
+          console.log(url,data);
           $http.post(url,data)
           .then(function(response)
             {
               var res =response.data.success;
            
-              if (res === "Found projects")
+              if (res == "Found projects")
               {
                  GlobalService.error="";
                  $scope.projects=response.data.projects.hits;
                 
             }
              },function(response){
+              console.log(response);
             GlobalService.error=response.data.error;
             $scope.response = GlobalService.error;
           });

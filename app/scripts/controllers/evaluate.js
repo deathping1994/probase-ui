@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('probaseUiApp')
-  .controller('UpdateCtrl',function (GlobalService,$scope,$http,$location) {
+  .controller('EvaluateCtrl',function (GlobalService,$scope,$http,$location) {
     $scope.temp={};
     $scope.projectsFound=false;
     $scope.showPreview=false;
@@ -32,7 +32,7 @@ angular.module('probaseUiApp')
 $scope.submit = function() 
 {
 
-var url=GlobalService.baseurl+"v1/projects/update/" + $scope.temp.groupid;
+var url=GlobalService.baseurl+"v1/projects/"+$scope.temp.groupid+"/evaluate"
 $scope.temp.authkey = GlobalService.authkey;
 $scope.temp.usertype = GlobalService.usertype;
 console.log(url);
@@ -76,7 +76,7 @@ console.log($scope.temp);
 
 $scope.projects = function(){
 
-var url=GlobalService.baseurl+"projects/" + GlobalService.user;
+var url=GlobalService.baseurl+"mentor/projects/" + GlobalService.user;
 console.log(url);
 
         var data={ 'authkey': GlobalService.authkey
@@ -123,6 +123,8 @@ $scope.showdetail = function(index)
         $scope.temp.groupid        =$scope.projects[index]._id;
         $scope.temp.source_code=$scope.projects[index]._source.source_code;
         $scope.temp.lang        =$scope.projects[index]._source.lang;
+        $scope.temp.remarks= $scope.projects[index]._source.remarks;
+        $scope.temp.rating=$scope.projects[index]._source.rating;
       };
 
 });

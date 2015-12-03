@@ -27,6 +27,32 @@ angular.module('probaseUiApp')
 
               });
     }
+    $scope.selected = undefined;
+  $scope.getSuggestions = function(val) {
+      var url=GlobalService.baseurl+"typeahead";
+    return $http.get(url, {
+      params: {
+        q: val,
+        size: 10
+      }
+    }).then(function(response){
+      return response.data.projects;
+    });
+  };
+
+
+    // $scope.getSuggestions=function(q)
+    // {
+    //   $http.get(url)
+    //   .then(function(res)
+    //       {
+    //         // console.log(res.data);
+    //         return res.data.projects.map(function(item){
+    //     console.log(item);
+    //     return item.title
+    //       });
+    //     });
+    // };
     $scope.showdetail = function(x)
       { $scope.display=true;
         $scope.title=x._source.title;

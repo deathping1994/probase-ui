@@ -19,7 +19,7 @@ var probaseUiApp=angular
     'ngSanitize',
     'ngTouch',
     'angular-loading-bar',
-   // 'angular-ui-grid'
+   'ui.bootstrap'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -68,6 +68,14 @@ var probaseUiApp=angular
                     factory: checkRouting
                 }
       })
+      .when('/evaluate', {
+        templateUrl: 'views/evaluate.html',
+        controller: 'EvaluateCtrl',
+        controllerAs: 'evaluate',
+        resolve: {
+                    factory: checkRouting
+                }
+      })
       .when('/update', {
         templateUrl: 'views/update.html',
         controller: 'UpdateCtrl',
@@ -78,7 +86,7 @@ var probaseUiApp=angular
       })
       .when('/test', {
         templateUrl: 'views/test.html',
-        controller: 'TestCtrl',
+        controller: 'SearchCtrl',
         controllerAs: 'dumb'
         // resolve: {
         //             factory: checkRouting
@@ -104,8 +112,8 @@ var probaseUiApp=angular
   };
 probaseUiApp.factory('GlobalService', function() {
     return {
-        baseurl : 'http://probase.anip.xyz:8080/',
-        // baseurl : 'http://localhost:5000/',
+        // baseurl : 'http://probase.anip.xyz:8080/',
+        baseurl : 'http://localhost:5000/',
         error:"",
         authkey:"",
         usertype:"",

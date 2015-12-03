@@ -18,7 +18,11 @@
       <form role="form" class="inline-form">
         <div class="row">
           <div class="form-control input-group centered">
-            <input type="text" ng-model="query" class="form-control" placeholder="Search for...">
+            <input type="text" ng-model="query" placeholder="Search in 200000+ projects" uib-typeahead="address.fields.title[0] for address in getSuggestions($viewValue)" typeahead-loading="loadingLocations" typeahead-no-results="noResults" class="form-control">
+            <i ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+            <div ng-show="noResults">
+              <i class="glyphicon glyphicon-remove"></i> No Results Found
+            </div>
             <span class="input-group-btn">
               <input type="submit" value="Search" class="btn btn-default" ng-click="submit()">Go!</input>
             </span>

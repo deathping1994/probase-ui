@@ -24,13 +24,20 @@
           </div>
           <div class="form-group form-group-sm">
             <input type="text" class="input-lg" value="DD/MM/YYYY" onfocus="if(this.value == 'DD/MM/YYYY') { this.value = ''; }" class="text" ng-model="date1">
+          
           </div>
+          <div class="form-group form-group-sm">
+            <input type="text" class="input-lg" ng-show="showTeachercode" ng-model="mentorcode" placeholder="Mentor Code">
+          
+          </div>
+          
           <div class="form-group form-group-lg">
-            <input type="radio" ng-model="usertype" value="S">
+            <input type="radio" ng-change="showTeachercode=false" ng-model="usertype" value="S">
              Student
   
-            <input type="radio" ng-model="usertype" value="E">
+            <input type="radio" ng-model="usertype" ng-change="showTeachercode=true" value="E">
              Teacher
+
             </div>
             <div class="form-group form-group-lg">
           <button type="submit" class="btn btn-primary input-md" ng-click="submit()"><i class="glyphicon glyphicon-log-in"> Login</i></button>

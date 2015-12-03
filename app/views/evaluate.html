@@ -1,0 +1,96 @@
+
+<modal title="Error" visible="showError">
+    <img class="img-thumbnail img-responsive" src="http://cdn4.wpbeginner.com/wp-content/uploads/2013/12/error.jpg" />
+    <br />
+    <h5 class="bg-danger" ng-bind="error"></h5>
+  </modal>
+<modal title="Success" visible="showSuccess">
+
+<p ng-if="success" class="text-success"><i class="fa fa-check fa-5x"></i> {{success}}</p>
+</modal>
+
+<modal title="Review Project Details" visible="showPreview">
+  
+<table class="table table-responsive" ng-if="showPreview">
+  <tr>
+    <td><h5>Project Title</h5></td>
+    <td><b><span class="text-muted" ng-bind="temp.title"></span></b></td>
+  </tr>
+  <tr>
+    <td><h5>Description</h5></td>
+    <td><b><span class="text-muted" ng-bind="temp.description"></span></b></td>
+  </tr>
+  <tr>
+    <td><h5>Rating</h5></td>
+    <td><b><input type="text" class= "text-info" ng-bind="temp.rating"/></b></td>
+  </tr>
+  <tr>
+    <td><h5>Remarks</h5></td>
+    <td><b><textarea row="3" col="20" class="text-muted" ng-bind="temp.remarks"></textarea></b></td>
+  </tr>
+  <tr>
+  <td colspan=2 class="text-right"><p class="pull-right">
+<button class="btn btn-md btn-primary" ng-click="hideModal()"><i class="fa fa-pencil"></i>Edit</button>
+<button class="btn btn-md btn-warning" ng-click="submit()">Save</button>
+</p>
+</td>
+</tr>
+</table>
+</modal>
+  
+  <div ng-init="projects()" class="col-xs-12 ">
+   <h3 class="text-center" ng-if="!projectsFound"><i class="fa fa-frown-o fa-5x"></i><br />Seems like you have not Registered any Projects yet!</h3>
+  <div ng-if="projectsFound" class="row">
+ <div class="well col-xs-4">
+  <div>          
+    <ul class="list-unstyled">
+    <li ng-repeat="x in projects">
+      <div class="results-li">
+        <button ng-click=showdetail($index)><span ng-bind=x._source.title></span></button>
+        <p ng-bind=x._source.description>
+        </p>
+      </div>
+      <br/>
+    </li>
+  </ul>
+  </div>
+ </div> 
+<div class="well col-xs-7 col-xs-offset-1">
+  <table>
+    <tr>
+      <td><h5>Project Title:</h5></td>
+      <td><span class="text-muted" ng-bind="temp.title"></span><i class="fa fa-lock"></i></td>
+    </tr>
+    <tr>
+      <td><h5>Project Description:</h5></td>
+      <td><p class="text-muted" ng-bind=temp.description></p><i class="fa fa-lock"></i></td>
+    </tr> 
+    <tr>
+      <td><h5>Synopsis:</h5></td>
+      <td><span class="text-muted" ng-bind="temp.synopsis"></span></td>
+    </tr> 
+    <tr>
+      <td><h5>Additional Links:</h5></td>
+      <td><span class="text-muted" ng-bind="temp.additional_links"></span></td> 
+    </tr>
+    <tr>
+      <td><h5>Project Report (Google Drive Url):</h5>
+      </td>
+      <td><span ng-bind="temp.project_report"></span></td>
+    </tr> 
+    <tr>
+      <td><h5>Source Code:</h5></td>
+      <td><span ng-bind="temp.source_code"></span></td> 
+    </tr>
+    <tr>
+      <td><h5>Languages/Frameworks:</h5></td>
+      <td><span ng-bind="temp.lang"></span></td> 
+    </tr>
+    <tr>
+      <td colspan=2><button type="submit" class="pull-right btn btn-lg btn-primary"  ng-model="temp.groupid" ng-click="previewModal()"><i class="fa fa-upload"></i> Evalute</button> 
+      </td>
+    </tr>
+  </table>
+  </div>
+</div>
+</div>
