@@ -92,7 +92,10 @@ console.log(url);
                  $scope.projectsFound=true;
                  console.log(res);
                  $scope.projects=response.data.projects.hits;
-                 console.log($scope.projects);
+                 if($scope.projects.length==0)
+                 {
+                  $scope.projectsFound=false;
+                 }
                  $scope.showdetail(0);
                 
             }

@@ -41,3 +41,34 @@ mymodal.directive('modal', function () {
       }
     };
   });
+
+
+var app = angular.module('gsmarkdown', []);
+
+app.directive('markdown', function ($window) {
+    var converter = new $window.showdown.Converter();
+    return {
+        restrict: 'A',
+        require: '?ngModel',
+        link: function (scope, element, attrs, model) {
+
+            var ngModel = attrs['ngModel'],
+                render = function () {
+                    var html, value;
+
+                    value = ((ngModel) ? model.$modelValue : element.text()) || '';
+
+                    html = converter.makeHtml(value);
+
+                    element.html(html);
+                };
+
+            if (ngModel) {
+                scope.$watch(ngModel, render);
+            }
+
+            render();
+        }
+    };
+
+});

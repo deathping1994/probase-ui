@@ -50,6 +50,7 @@
               <li><a href="#/" ng-if="!loggedin">Login</a></li>
               <li><a ng-href="#/search">Search</a></li>
               <li><a ng-href="#/approve" ng-if="loggedin && usertype == 'E'">Approve Group</a></li>
+              <li><a ng-href="#/evaluate" ng-if="loggedin && usertype == 'E'">Evaluate</a></li>
               <li><a ng-href="#/register" ng-if="loggedin && usertype == 'S'">Register Group</a></li>
               <li><a ng-href="#/update" ng-if="loggedin && usertype == 'S'">Update Project</a></li>
               <li><a ng-href="#/feedback">Feedback</a></li>
@@ -65,7 +66,7 @@
     </div>
 
     <div class="footer">
-      <div class="container">
+      <div class="container-fluid">
         <span class="pull-right"><span class="fa fa-copyright"></span> Probase- 2015</span>
         <span class="pull-left"><span class="fa fa-check"></span>Source Code available on github</span>
       </div>
@@ -96,15 +97,15 @@
     <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
     <script src="bower_components/angular-touch/angular-touch.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="bower_components/showdown/dist/showdown.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
 
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha256-KXn5puMvxCw+dAYznun+drMdG1IFl3agK0p/pqT9KAo= sha512-2e8qq0ETcfWRI4HJBzQiA3UoyFk6tbNyG+qSaIBZLyW9Xf3sWZHN/lxe9fTh1U45DpPf07yj94KsUHHWe4Yk1A==" crossorigin="anonymous"></script>
         <script src="scripts/ui-bootstrap-0.14.0.min.js"></script>
-        <script src="scripts/controllers/mymodal.js"></script>
+        <script src="scripts/controllers/customdirective.js"></script>
         <script src="scripts/controllers/test.js"></script>
         <script src="scripts/controllers/index.js"></script>
         <script src="scripts/controllers/logout.js"></script>
@@ -114,6 +115,7 @@
         <script src="scripts/controllers/feedback.js"></script>
         <script src="scripts/controllers/update.js"></script>
         <script src="scripts/controllers/approve.js"></script>
+        <script src="scripts/controllers/evaluate.js"></script>
         <!-- endbuild -->
 </body>
 </html>

@@ -19,7 +19,8 @@ var probaseUiApp=angular
     'ngSanitize',
     'ngTouch',
     'angular-loading-bar',
-   'ui.bootstrap'
+   'ui.bootstrap',
+   'gsmarkdown'
   ])
   .config(function ($routeProvider) {
     $routeProvider

@@ -52,7 +52,7 @@
 <div class="detail col-xs-5" ng-show='display' id="detail">
   <h2><strong><span ng-bind=title></span></strong></h2>
     <p ng-bind=description></p>
-    <p ng-bind=synopsis></p>
+    <div markdown ng-model="synopsis"></div>
     <p class="text-success bg-success"ng-if=evaluated>This Project has been evaluated.Rating is <p ng-bind=rating></p></p>
     <p ng-if="!evaluated && approved"><strong>"This project has been approved but pending evaluation."</strong></p>
     <p ng-if="!evaluated && !approved"><strong>The project is not approved yet.</strong></p>

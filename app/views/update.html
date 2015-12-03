@@ -22,7 +22,7 @@
   </tr>
   <tr>
     <td><h5>Synopsis</h5></td>
-    <td><b><span class= "text-muted" ng-bind="temp.synopsis"></span></b></td>
+    <td><b><span markdown class= "text-muted" ng-model="temp.synopsis"></span></b></td>
   </tr>
   <tr>
     <td><h5>Project Report</h5></td>
@@ -53,7 +53,7 @@
   <div ng-init="projects()" class="col-xs-12 ">
    <h3 class="text-center" ng-if="!projectsFound"><i class="fa fa-frown-o fa-5x"></i><br />Seems like you have not Registered any Projects yet!</h3>
   <div ng-if="projectsFound" class="row">
- <div class="well col-xs-4">
+ <div class="well col-xs-3">
   <div>          
     <ul class="list-unstyled">
     <li ng-repeat="x in projects">
@@ -67,7 +67,7 @@
   </ul>
   </div>
  </div> 
-<div class="well col-xs-7 col-xs-offset-1">
+<div class="well col-xs-8 col-xs-offset-1">
   <table>
     <tr>
       <td><h5>Project Title:</h5></td>
@@ -81,7 +81,8 @@
     </tr> 
     <tr>
       <td><h5>Synopsis:</h5></td>
-      <td><textarea rows="10" cols="50" ng-model="temp.synopsis"></textarea></td>
+      <td><div id="synopsis-md" class="well" style="word-wrap:break-word;overflow-y:auto;height:450px;width=500px;" markdown ng-model="temp.synopsis"></div>
+        <br/><textarea rows="6" cols="50" ng-model="temp.synopsis"></textarea></td>
     </tr> 
     <tr>
       <td><h5>Additional Links:</h5></td>
